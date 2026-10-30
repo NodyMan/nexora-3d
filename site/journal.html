@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Journal — Nexora Studio</title>
+  <meta name="description" content="Engineering notes from the Nexora Studio founders: performance, applied AI and how the studio operates." />
+  <meta name="theme-color" content="#f3f4ef" />
+  <link rel="canonical" href="https://nexorastudio.world/journal.html" />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexora Studio" />
+  <meta property="og:title" content="Journal — Nexora Studio" />
+  <meta property="og:description" content="Engineering notes from the Nexora Studio founders: performance, applied AI and how the studio operates." />
+  <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
+  <meta property="og:url" content="https://nexorastudio.world/journal.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Journal — Nexora Studio" />
+  <meta name="twitter:description" content="Engineering notes from the Nexora Studio founders: performance, applied AI and how the studio operates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&family=Unbounded:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="./js/scene.js"></script>
+</head>
+<body>
+  <canvas class="webgl" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="./index.html" aria-label="Nexora Studio — home">
+        <img src="./assets/logo-mark.png" alt="" width="26" height="26" />
+        <span>Nexora<span>Studio</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="./studio.html">Studio</a>
+          <a href="./work.html">Work</a>
+          <a href="./team.html">Team</a>
+          <a href="./journal.html" aria-current="page">Journal</a>
+          <a href="./contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch" data-lang-group role="group" aria-label="Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
+        </div>
+        <a class="btn" href="./contact.html">Start a project</a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="menu-toggle__label">Menu</span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="wrap">
+        <nav aria-label="Mobile">
+          <a href="./index.html">Home</a>
+          <a href="./studio.html">Studio</a>
+          <a href="./work.html">Work</a>
+          <a href="./team.html">Team</a>
+          <a href="./journal.html" aria-current="page">Journal</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
+        <div class="mobile-menu__foot">
+          <div class="lang-row"><span class="label">Language</span><div class="lang-switch" data-lang-group role="group" aria-label="Language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
+        </div></div>
+          <a class="btn" href="./contact.html">Start a project</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero--page">
+      <div class="hero__space hero__space--page" aria-hidden="true"></div>
+      <div class="wrap">
+        <span class="label rise">Journal</span>
+        <h1 class="display rise" style="--d:80ms">Notes from <em>the ascent.</em></h1>
+        <div class="hero__foot">
+          <p class="lede rise" style="--d:160ms">Field notes from the founders on performance, applied AI and keeping a studio small enough to stay accountable. No growth hacks, no predictions — only what we measured.</p>
+        </div>
+        <div class="entries rise" style="--d:240ms;margin-top:clamp(40px,5vw,72px)">
+          <a class="entry-link" href="./journal.html#seven-mb">
+            <span class="mono muted">Engineering<br />October 2026</span>
+            <div><h3 class="h3">The 7 MB constraint</h3><p>DigitalLib ships as a 7.05 MB Android build. That number was not a compression pass at the end; it was a budget we defended from the first commit.</p></div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="entry-link" href="./journal.html#guardrails">
+            <span class="mono muted">Applied AI<br />October 2026</span>
+            <div><h3 class="h3">Guardrails before magic</h3><p>Ari is the mentor inside Arise. The hardest part was not making it sound intelligent — it was keeping it honest about what it knows.</p></div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="entry-link" href="./journal.html#capacity">
+            <span class="mono muted">Studio<br />September 2026</span>
+            <div><h3 class="h3">Two engagements per quarter</h3><p>Capacity is not a sales constraint. It is the mechanism that keeps the people who scope your product on the line that ships it.</p></div>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <article class="wrap article" id="seven-mb">
+      <div class="article__meta">
+        <span class="label">Engineering</span>
+        <span class="mono muted">October 2026 · 6 min read</span>
+      </div>
+      <div class="article__body">
+        <h2 class="h2">The 7 MB constraint</h2>
+        <p class="lede">DigitalLib ships as a 7.05 MB Android build. That number was not a compression pass at the end; it was a budget we defended from the first commit.</p>
+          <p>The easy version of a reading platform is a browser wrapped around a CDN. It looks finished on a fast connection and falls apart on the connection most students actually have. We started from the opposite direction: a device from 2019, a metered data plan and a campus where the Wi-Fi drops between buildings.</p>
+          <p>Every dependency had to justify its kilobytes. We kept the reader in the platform WebView, streamed chapters instead of preloading the catalogue, and cached only the pages a reader had actually opened. Analytics, crash reporting and A/B tooling — the default cargo of a modern app — were replaced with a single lightweight event pipe we could reason about.</p>
+          <blockquote>Performance is a product decision, not a cleanup task.</blockquote>
+          <p>The result is a build a student can download on mobile data without thinking about it. The lesson is not that small is always better. It is that the constraint belongs in the architecture, not in the release checklist.</p>
+          <ul>
+            <li>The reader stays in the platform WebView; the catalogue streams on demand.</li>
+            <li>Covers are generated as responsive AVIF and WebP at build time.</li>
+            <li>No third-party SDK sits in the critical path.</li>
+          </ul>
+        <p class="article__sign">— Makhmud Nasriddinov, systems</p>
+      </div>
+    </article>
+
+    <article class="wrap article" id="guardrails">
+      <div class="article__meta">
+        <span class="label">Applied AI</span>
+        <span class="mono muted">October 2026 · 5 min read</span>
+      </div>
+      <div class="article__body">
+        <h2 class="h2">Guardrails before magic</h2>
+        <p class="lede">Ari is the mentor inside Arise. The hardest part was not making it sound intelligent — it was keeping it honest about what it knows.</p>
+          <p>Students ask direct questions: which university, which subject, which deadline. A fluent answer that invents a scholarship is worse than no answer at all. So Ari is built around retrieval first and generation second. University facts, deadlines and requirements come from a verified catalogue; the model composes the route, not the facts.</p>
+          <p>Every response is constrained to a structured shape — a next step, a reason, a source. When the catalogue has no answer, Ari says so and offers the closest verified path. That refusal style was designed before the first prompt was written.</p>
+          <blockquote>A mentor that admits the gap is more useful than one that fills it with noise.</blockquote>
+          <p>Multilingual support is not a translation layer on top. English, Russian and Uzbek prompts share the same structured contract, and the mentor answers in the language the student used — including the mixed language students actually type.</p>
+        <p class="article__sign">— Nurahmadov Xayrullo, machine learning</p>
+      </div>
+    </article>
+
+    <article class="wrap article" id="capacity">
+      <div class="article__meta">
+        <span class="label">Studio</span>
+        <span class="mono muted">September 2026 · 4 min read</span>
+      </div>
+      <div class="article__body">
+        <h2 class="h2">Two engagements per quarter</h2>
+        <p class="lede">Capacity is not a sales constraint. It is the mechanism that keeps the people who scope your product on the line that ships it.</p>
+          <p>Nexora is three founders and no account layer. That sentence is easy to print and hard to operate. The only way to keep it true is to bound the number of things happening at once.</p>
+          <p>Two client engagements per quarter is a deliberate ceiling. It leaves room for architecture reviews, for the unglamorous week where a release is stabilised, and for our own platforms — Arise and DigitalLib — which we still run ourselves.</p>
+          <blockquote>A small studio is not a boutique aesthetic. It is an operating constraint.</blockquote>
+          <p>It also makes the first conversation honest. If the timing does not fit, we say so instead of hiring a team you have never met to carry the work. The studio stays small because the alternative is a promise we cannot keep.</p>
+        <p class="article__sign">— Abduraximov Nizomiddin, design</p>
+      </div>
+    </article>
+
+    <section class="section section--dark">
+      <div class="wrap cta">
+        <span class="label">Contact</span>
+        <h2 class="display">Bring us the next one <em>built to hold</em>.</h2>
+        <div class="cta__row">
+          <p>Two engagements per quarter, scoped directly with the founders. Tell us what you're building and when it needs to exist.</p>
+          <div class="actions">
+            <a class="btn btn--light" href="./contact.html">Start a project</a>
+            <a class="cta__mail" href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p>Three founders. Every line of code.</p>
+        </div>
+        <nav aria-label="Footer">
+          <span class="label">Navigate</span>
+          <a href="./studio.html">Studio</a>
+          <a href="./work.html">Work</a>
+          <a href="./team.html">Team</a>
+          <a href="./journal.html">Journal</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./portal.html">Client portal</a>
+        </nav>
+        <div>
+          <span class="label">Contact</span>
+          <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
+          <a href="mailto:support@nexorastudio.world?subject=Application%20%E2%80%94%20Nexora%20Studio">Careers</a>
+          <a href="./contact.html">Start a project</a>
+        </div>
+        <div>
+          <span class="label">Studio</span>
+          <span class="muted">Fergana, Uzbekistan</span>
+          <span class="muted num"><span data-clock>FER 00:00</span> · UTC+5</span>
+          <span class="status">Open for new projects</span>
+        </div>
+      </div>
+      <div class="footer-word" aria-hidden="true" data-no-i18n>Nexora</div>
+      <div class="footer-bottom mono">
+        <span>© <span data-year>2026</span> Nexora Studio</span>
+        <span>Engineered in Fergana · EN / RU / UZ</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

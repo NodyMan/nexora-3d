@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found — Nexora Studio</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0b0b10" />
+  <link rel="icon" href="/assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="preload" href="/assets/fonts/manrope-800.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Manrope'; src: url('/assets/fonts/manrope-800.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+    @font-face { font-family: 'Manrope'; src: url('/assets/fonts/manrope-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+    :root { --dark: #0b0b10; --lime: #cdff3a; --mint: #7cf2c9; --pad: clamp(16px, 3.4vw, 56px); }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      min-height: 100svh; display: flex; flex-direction: column; justify-content: space-between;
+      padding: var(--pad); background: var(--dark); color: #fff;
+      font: 500 16px/1.5 'Manrope', ui-sans-serif, system-ui, sans-serif;
+    }
+    .mono { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 800; }
+    h1 { font-size: clamp(56px, 11vw, 200px); font-weight: 800; letter-spacing: -0.06em; line-height: 0.9; max-width: 9ch; }
+    h1 em { font-style: normal; color: var(--lime); }
+    p { margin-top: 24px; max-width: 40ch; color: rgba(255, 255, 255, 0.65); }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+    .btn { display: inline-flex; align-items: center; padding: 14px 24px; border-radius: 99px; font-weight: 800; text-decoration: none; transition: background 0.3s, color 0.3s; }
+    .btn--lime { background: var(--lime); color: var(--dark); }
+    .btn--lime:hover { background: #fff; }
+    .btn--ghost { color: #fff; border: 1px solid rgba(255, 255, 255, 0.25); }
+    .btn--ghost:hover { border-color: var(--mint); color: var(--mint); }
+  </style>
+</head>
+<body>
+  <a class="brand" href="/"><img src="/assets/logo-mark.png" alt="" width="28" height="28" /> Nexora</a>
+  <main>
+    <div class="mono">Error 404 — off the route</div>
+    <h1>This page doesn't <em>exist.</em></h1>
+    <p>The link may be old or mistyped. Everything we build is one click away.</p>
+    <div class="row">
+      <a class="btn btn--lime" href="/">Back to home</a>
+      <a class="btn btn--ghost" href="/work.html">See our work</a>
+      <a class="btn btn--ghost" href="/contact.html">Contact</a>
+    </div>
+  </main>
+  <div class="mono">© 2026 Nexora Studio · Fergana</div>
+</body>
+</html>

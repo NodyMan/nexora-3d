@@ -1,0 +1,14 @@
+.qa
+backup-old-home
+site-v2
+src
+src-v2
+dev
+functions
+.claude
+.Nexora Studio.qoder.site
+.env.local
+.env*
+backup-pre-v3
+site-v3
+src-v3

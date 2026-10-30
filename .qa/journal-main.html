@@ -1,0 +1,97 @@
+  <main id="main">
+    <section class="page-hero journal-hero" id="top" data-mood="1">
+      <div class="page-hero__scrim" aria-hidden="true"></div>
+      <div class="page-hero__inner">
+        <div class="eyebrow reveal"><span class="eyebrow__idx" aria-hidden="true">✦</span> Journal</div>
+        <div class="page-hero__head">
+          <h1 class="page-hero__title page-hero__title--gradient">
+            <span class="reveal">Notes from</span>
+            <span class="reveal" data-delay="1"><em>the ascent.</em></span>
+          </h1>
+          <p class="page-hero__lede reveal" data-delay="2">Field notes from the founders on performance, applied AI and keeping a studio small enough to stay accountable. No growth hacks, no predictions — only what we measured.</p>
+        </div>
+        <div class="page-hero__foot reveal" data-delay="3">
+          <div class="page-hero__meta">
+            <span><b>03</b> Entries</span>
+            <span><b>Oct 2026</b> Last update</span>
+            <span><b>Fergana, UZ</b> Basecamp</span>
+          </div>
+          <span class="mono">Written by the founders</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="journal-index" aria-label="Journal entries">
+      <div class="journal-index__inner">
+        <a href="#entry-megabytes"><span class="mono">01</span><span>Engineering</span><b>The 7 MB constraint</b><i aria-hidden="true">↓</i></a>
+        <a href="#entry-guardrails"><span class="mono">02</span><span>Applied AI</span><b>Guardrails before magic</b><i aria-hidden="true">↓</i></a>
+        <a href="#entry-capacity"><span class="mono">03</span><span>Studio</span><b>Two engagements per quarter</b><i aria-hidden="true">↓</i></a>
+      </div>
+    </nav>
+
+    <div class="journal">
+      <article class="entry" id="entry-megabytes" data-mood="2">
+        <header class="entry__head reveal">
+          <span class="entry__meta mono">01 · Engineering · October 2026 · 6 min read</span>
+          <h2 class="entry__title reveal">The 7 MB constraint</h2>
+          <p class="entry__lede reveal" data-delay="1">DigitalLib ships as a 7.05 MB Android build. That number was not a compression pass at the end; it was a budget we defended from the first commit.</p>
+        </header>
+        <div class="entry__body">
+          <p class="reveal">The easy version of a reading platform is a browser wrapped around a CDN. It looks finished on a fast connection and falls apart on the connection most students actually have. We started from the opposite direction: a device from 2019, a metered data plan and a campus where the Wi-Fi drops between buildings.</p>
+          <p class="reveal">Every dependency had to justify its kilobytes. We kept the reader in the platform WebView, streamed chapters instead of preloading the catalogue, and cached only the pages a reader had actually opened. Analytics, crash reporting and A/B tooling — the default cargo of a modern app — were replaced with a single lightweight event pipe we could reason about.</p>
+          <blockquote class="entry__pull reveal">Performance is a product decision, <em>not a cleanup task.</em></blockquote>
+          <p class="reveal">The result is a build a student can download on mobile data without thinking about it. The lesson is not that small is always better. It is that the constraint belongs in the architecture, not in the release checklist.</p>
+          <ul class="entry__list reveal">
+            <li>The reader stays in the platform WebView; the catalogue streams on demand.</li>
+            <li>Covers are generated as responsive AVIF and WebP at build time.</li>
+            <li>No third-party SDK sits in the critical path.</li>
+          </ul>
+          <p class="entry__byline mono reveal">— Makhmud Nasriddinov, systems</p>
+        </div>
+      </article>
+
+      <article class="entry" id="entry-guardrails" data-mood="3">
+        <header class="entry__head reveal">
+          <span class="entry__meta mono">02 · Applied AI · October 2026 · 5 min read</span>
+          <h2 class="entry__title reveal">Guardrails before magic</h2>
+          <p class="entry__lede reveal" data-delay="1">Ari is the mentor inside Arise. The hardest part was not making it sound intelligent — it was keeping it honest about what it knows.</p>
+        </header>
+        <div class="entry__body">
+          <p class="reveal">Students ask direct questions: which university, which subject, which deadline. A fluent answer that invents a scholarship is worse than no answer at all. So Ari is built around retrieval first and generation second. University facts, deadlines and requirements come from a verified catalogue; the model composes the route, not the facts.</p>
+          <p class="reveal">Every response is constrained to a structured shape — a next step, a reason, a source. When the catalogue has no answer, Ari says so and offers the closest verified path. That refusal style was designed before the first prompt was written.</p>
+          <blockquote class="entry__pull reveal">A mentor that admits the gap is more useful than one that <em>fills it with noise.</em></blockquote>
+          <p class="reveal">Multilingual support is not a translation layer on top. English, Russian and Uzbek prompts share the same structured contract, and the mentor answers in the language the student used — including the mixed language students actually type.</p>
+          <p class="entry__byline mono reveal">— Nurahmadov Xayrullo, machine learning</p>
+        </div>
+      </article>
+
+      <article class="entry" id="entry-capacity" data-mood="1">
+        <header class="entry__head reveal">
+          <span class="entry__meta mono">03 · Studio · September 2026 · 4 min read</span>
+          <h2 class="entry__title reveal">Two engagements per quarter</h2>
+          <p class="entry__lede reveal" data-delay="1">Capacity is not a sales constraint. It is the mechanism that keeps the people who scope your product on the line that ships it.</p>
+        </header>
+        <div class="entry__body">
+          <p class="reveal">Nexora is three founders and no account layer. That sentence is easy to print and hard to operate. The only way to keep it true is to bound the number of things happening at once.</p>
+          <p class="reveal">Two client engagements per quarter is a deliberate ceiling. It leaves room for architecture reviews, for the unglamorous week where a release is stabilised, and for our own platforms — Arise and DigitalLib — which we still run ourselves.</p>
+          <blockquote class="entry__pull reveal">A small studio is not a boutique aesthetic. It is an <em>operating constraint.</em></blockquote>
+          <p class="reveal">It also makes the first conversation honest. If the timing does not fit, we say so instead of hiring a team you have never met to carry the work. The studio stays small because the alternative is a promise we cannot keep.</p>
+          <p class="entry__byline mono reveal">— Abduraximov Nizomiddin, design</p>
+        </div>
+      </article>
+    </div>
+
+    <section class="cta-band journal-cta" data-mood="4">
+      <div class="cta-band__inner">
+        <div>
+          <div class="eyebrow reveal"><span class="eyebrow__idx">→</span> Next</div>
+          <h2 class="reveal">Bring us the next one<br /><em>built to hold.</em></h2>
+        </div>
+        <div class="cta-band__side reveal" data-delay="1">
+          <p>Two engagements per quarter, scoped directly with the founders. Tell us what you're building and when it needs to exist.</p>
+          <a class="pill pill--solid" href="./contact.html">Start a project <span aria-hidden="true">↗</span></a>
+          <a class="cta-band__email" href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
+        </div>
+      </div>
+    </section>
+  </main>

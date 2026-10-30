@@ -1,0 +1,21 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site-v2",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "dev/serve-v2.mjs"
+      ],
+      "port": 4180
+    },
+    {
+      "name": "site-v3",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "dev/serve-v3.mjs"
+      ],
+      "port": 4190
+    }
+  ]
+}

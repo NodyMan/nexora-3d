@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexora Studio — Digital products that hold</title>
+  <meta name="description" content="Nexora Studio is a founder-led digital engineering studio in Fergana, Uzbekistan. Mobile products, high-performance web platforms and applied AI — makers of Arise and DigitalLib." />
+  <meta name="theme-color" content="#eef0f6" />
+  <link rel="canonical" href="https://nexorastudio.world/" />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexora Studio" />
+  <meta property="og:title" content="Nexora Studio — Digital products that hold" />
+  <meta property="og:description" content="Founder-led mobile, web and applied AI. Built in Fergana, measured in production." />
+  <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="./assets/fonts/manrope-800.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/fonts/manrope-500.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./styles.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__count"><span id="loader-count">0</span><sup>%</sup></div>
+    <div class="loader__label">Nexora Studio — loading the field</div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__dot"></span>
+    <span class="cursor__label" id="cursor-label">View</span>
+  </div>
+
+  <header class="header" id="header">
+    <a class="brand" href="#top" aria-label="Nexora Studio — back to top">
+      <img src="./assets/logo-mark.png" alt="" width="28" height="28" />
+      <span>Nexora</span>
+    </a>
+    <div class="header__right">
+      <span class="header__clock mono" aria-label="Local time in Fergana"><i class="live" aria-hidden="true"></i><span data-clock>FER 00:00</span></span>
+      <a class="btn btn--dark header__cta" href="#contact" data-magnetic>Let's talk <span class="btn__dot" aria-hidden="true"></span></a>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-magnetic>
+        <span class="menu-btn__label">Menu</span>
+        <span class="menu-btn__icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu__panel">
+      <nav class="menu__nav" aria-label="Primary">
+        <a href="#top">Home</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="menu__foot">
+        <div>
+          <span class="mono">Say hello</span>
+          <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
+        </div>
+        <div>
+          <span class="mono">Basecamp</span>
+          <span>Fergana, Uzbekistan · UTC+5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__stage">
+        <canvas id="hero-canvas" class="field" aria-hidden="true"></canvas>
+      </div>
+      <div class="hero__content">
+        <p class="hero__kicker mono" data-reveal>
+          <span>Digital engineering studio</span>
+          <span>Fergana, UZ</span>
+        </p>
+        <h1 class="hero__title" data-split>
+          We build digital products that refuse to fail.
+        </h1>
+        <div class="hero__row">
+          <p class="hero__lede" data-reveal>
+            Founder-led mobile, web and applied AI. Three partners, zero intermediaries — the people who scope your product are the people who ship it.
+          </p>
+          <a class="scroll-cue mono" href="#about" data-reveal>
+            <span class="scroll-cue__ring" aria-hidden="true"><i></i></span>
+            Scroll to explore
+          </a>
+        </div>
+      </div>
+      <p class="hero__hint mono" aria-hidden="true">Move to push — click to scatter</p>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement" id="about">
+      <div class="wrap">
+        <div class="label mono" data-reveal><span>01</span> About the studio</div>
+        <p class="statement__text" data-scrub>
+          Nexora is a small engineering studio from Fergana. We design, build and run mobile apps, web platforms and AI systems for ambitious teams — and for products of our own. Small by design. Accountable by default.
+        </p>
+        <div class="statement__foot">
+          <div class="stats">
+            <div data-reveal><b data-count="3">0</b><span>founding partners</span></div>
+            <div data-reveal><b data-count="2">0</b><span>products live in production</span></div>
+            <div data-reveal><b data-count="2">0</b><span>engagements per quarter</span></div>
+            <div data-reveal><b data-count="24">0</b><span>hour founder reply</span></div>
+          </div>
+          <a class="btn btn--outline" href="#process" data-magnetic data-reveal>How we work <span class="btn__dot" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="work" id="work">
+      <div class="wrap">
+        <div class="work__head">
+          <h2 class="display" data-split>Featured work</h2>
+          <p class="work__intro" data-reveal>Two platforms, designed, engineered and operated by the founding team. Both live. Yours is next.</p>
+        </div>
+
+        <div class="cards">
+          <a class="card card--arise" href="mailto:support@nexorastudio.world?subject=Arise%20case%20study" data-cursor="View case">
+            <div class="card__media" data-parallax>
+              <div class="card__bg" aria-hidden="true"></div>
+              <div class="phones">
+                <figure class="phone phone--l"><img src="./assets/work/arise-skilltree.jpg" alt="Arise skill tree screen" loading="lazy" decoding="async" /></figure>
+                <figure class="phone phone--c"><img src="./assets/work/arise-welcome.jpg" alt="Arise welcome screen with Ari, the AI mentor" loading="lazy" decoding="async" /></figure>
+                <figure class="phone phone--r"><img src="./assets/work/arise-ari.jpg" alt="Chat with Ari, the multilingual AI mentor" loading="lazy" decoding="async" /></figure>
+              </div>
+            </div>
+            <div class="card__meta">
+              <div>
+                <h3>Arise</h3>
+                <p>An AI-guided ascent from school to university.</p>
+              </div>
+              <ul class="tags"><li>iOS / Android</li><li>Applied AI</li><li>2026</li></ul>
+            </div>
+          </a>
+
+          <a class="card card--lib" href="mailto:support@nexorastudio.world?subject=DigitalLib%20case%20study" data-cursor="View case">
+            <div class="card__media" data-parallax>
+              <div class="card__bg" aria-hidden="true"></div>
+              <div class="phones">
+                <figure class="phone phone--l"><img src="./assets/work/digitallib-alif.jpg" alt="DigitalLib Uzbek alphabet screen" loading="lazy" decoding="async" /></figure>
+                <figure class="phone phone--c"><img src="./assets/work/digitallib-home.jpg" alt="DigitalLib library home with catalogue" loading="lazy" decoding="async" /></figure>
+                <figure class="phone phone--r"><img src="./assets/work/digitallib-reader.jpg" alt="DigitalLib reader view" loading="lazy" decoding="async" /></figure>
+              </div>
+            </div>
+            <div class="card__meta">
+              <div>
+                <h3>DigitalLib</h3>
+                <p>A national reading platform, engineered to 7 MB.</p>
+              </div>
+              <ul class="tags"><li>Android</li><li>Offline-first</li><li>2026</li></ul>
+            </div>
+          </a>
+
+          <a class="card card--next" href="#contact" data-cursor="Start">
+            <div class="card__media">
+              <div class="card__bg" aria-hidden="true"></div>
+              <div class="next">
+                <span class="mono">003 / Open slot</span>
+                <strong>Your product<br />goes here.</strong>
+              </div>
+            </div>
+            <div class="card__meta">
+              <div>
+                <h3>Next</h3>
+                <p>We take two engagements per quarter.</p>
+              </div>
+              <ul class="tags"><li>Mobile</li><li>Web</li><li>AI</li></ul>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" id="marquee">
+        <span>Built in Fergana</span><i></i><span>Shipped worldwide</span><i></i><span>Mobile</span><i></i><span>Web</span><i></i><span>Applied AI</span><i></i>
+        <span>Built in Fergana</span><i></i><span>Shipped worldwide</span><i></i><span>Mobile</span><i></i><span>Web</span><i></i><span>Applied AI</span><i></i>
+      </div>
+    </div>
+
+    <!-- CAPABILITIES -->
+    <section class="caps" id="capabilities">
+      <div class="wrap">
+        <div class="label mono" data-reveal><span>02</span> Capabilities</div>
+        <ul class="caps__list">
+          <li class="cap" data-reveal>
+            <span class="cap__idx mono">01</span>
+            <h3>Mobile ecosystems</h3>
+            <p>Native-feeling iOS and Android products on React Native and Expo. Fluid gestures, offline resilience and release discipline that survives the store.</p>
+            <ul class="tags"><li>React Native</li><li>Expo</li><li>Swift</li></ul>
+          </li>
+          <li class="cap" data-reveal>
+            <span class="cap__idx mono">02</span>
+            <h3>High-performance web</h3>
+            <p>Platforms, dashboards and portals on React and edge infrastructure. Fast at the first paint, coherent at the hundredth screen.</p>
+            <ul class="tags"><li>React</li><li>Vite</li><li>Supabase</li></ul>
+          </li>
+          <li class="cap" data-reveal>
+            <span class="cap__idx mono">03</span>
+            <h3>Applied AI systems</h3>
+            <p>LLM mentors, retrieval pipelines and real-time agents with guardrails and structured outputs — real product value, not a wrapper in a new coat.</p>
+            <ul class="tags"><li>LLMs</li><li>RAG</li><li>Python</li></ul>
+          </li>
+          <li class="cap" data-reveal>
+            <span class="cap__idx mono">04</span>
+            <h3>Interactive 3D &amp; motion</h3>
+            <p>WebGL scenes, product visualisation and motion systems that make a brand feel alive — tuned to run on a mid-range phone.</p>
+            <ul class="tags"><li>Three.js</li><li>WebGL</li><li>Remotion</li></ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+      <div class="wrap">
+        <div class="process__head">
+          <div class="label mono" data-reveal><span>03</span> Process</div>
+          <h2 class="display" data-split>From first call to production.</h2>
+        </div>
+        <ol class="steps">
+          <li class="step" data-reveal><span class="mono">Week 0</span><h3>Scope</h3><p>A founder call, a written brief and a fixed plan. No sales layer.</p></li>
+          <li class="step" data-reveal><span class="mono">Week 1–2</span><h3>Architect</h3><p>Data model, interfaces and the risky parts proven first.</p></li>
+          <li class="step" data-reveal><span class="mono">Week 3+</span><h3>Build</h3><p>Weekly builds you can install, with a live changelog.</p></li>
+          <li class="step" data-reveal><span class="mono">Ongoing</span><h3>Operate</h3><p>Releases, monitoring and iteration after launch day.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+      <div class="cta__stage">
+        <canvas id="cta-canvas" class="field" aria-hidden="true"></canvas>
+      </div>
+      <div class="cta__content wrap">
+        <div class="label mono label--light" data-reveal><span>04</span> Contact</div>
+        <h2 class="cta__title" data-split>Got an idea that has to work?</h2>
+        <div class="cta__row">
+          <a class="btn btn--light btn--xl" href="mailto:support@nexorastudio.world?subject=New%20project%20%E2%80%94%20Nexora%20Studio" data-magnetic>Let's talk <span class="btn__dot" aria-hidden="true"></span></a>
+          <p data-reveal>Tell us what you're building, who it's for and when it needs to exist. The founders reply within 24 hours.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div>
+          <span class="mono">Email</span>
+          <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
+        </div>
+        <div>
+          <span class="mono">Studio</span>
+          <span>Fergana, Uzbekistan</span>
+          <span><span data-clock>FER 00:00</span> · UTC+5</span>
+        </div>
+        <div>
+          <span class="mono">Navigate</span>
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#capabilities">Capabilities</a>
+        </div>
+        <div>
+          <span class="mono">Status</span>
+          <span class="status"><i class="live" aria-hidden="true"></i> Open for Q1 2027</span>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </div>
+      <div class="footer__word" aria-hidden="true">NEXORA</div>
+      <div class="footer__bottom mono">
+        <span>© 2026 Nexora Studio</span>
+        <span>Engineered in Fergana</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

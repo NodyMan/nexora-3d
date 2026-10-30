@@ -1,0 +1,205 @@
+/* --------------------------------------------------------------------------
+   Nexora — client portal, kinetic theme
+   Loaded after portal.css on portal.html only (admin.html keeps portal.css as
+   is). Matches the public site: cool grey canvas, electric blue accent,
+   two-tone sans headlines, pill buttons and rounded white cards. Status tags
+   keep distinct meaning colours: green for live/paid, amber for review/sent,
+   red for paused/overdue.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --bg: #eef0f6;
+  --bg-2: #e6e9f1;
+  --ink: #0d0d12;
+  --ink-dim: #3c3f4a;
+  --muted: #6d717e;
+  --muted-2: #8d919d;
+  --ice: #2f44ff;
+  --ice-2: #5b6cff;
+  --ember: #d6453d;
+  --gold: #b7791f;
+  --ok: #17915a;
+  --line: rgba(13, 13, 18, 0.12);
+  --line-soft: rgba(13, 13, 18, 0.07);
+  --line-strong: rgba(13, 13, 18, 0.24);
+  --paper: #ffffff;
+  --serif: var(--sans);
+  --radius: clamp(18px, 2vw, 28px);
+  --max: 1440px;
+}
+
+html { scrollbar-color: #b9bdc9 var(--bg); }
+::selection { background: var(--ice); color: #fff; }
+
+/* Header ------------------------------------------------------------------ */
+.pbar {
+  background: rgba(238, 240, 246, 0.82);
+  border-bottom-color: transparent;
+  padding-block: 14px;
+}
+.pbar__brand { font-size: 20px; letter-spacing: -0.03em; gap: 10px; }
+.pbar__brand img { width: 28px; height: 28px; }
+.pbar__brand small {
+  margin-left: 4px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.lang-switch { font-size: 12px; }
+.lang-switch button { color: var(--muted); }
+.lang-switch button.is-active::after { background: currentColor; }
+.pbar__link {
+  height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 99px;
+  background: #fff;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  transition: background 0.3s, color 0.3s;
+}
+.pbar__link:hover { background: var(--ice); color: #fff; border-color: transparent; }
+
+/* Buttons ----------------------------------------------------------------- */
+.pbtn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 0;
+  background: #fff;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.pbtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--ice);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease);
+}
+.pbtn:hover { background: #fff; color: #fff; }
+.pbtn:hover::before { transform: none; }
+.pbtn--solid { height: 54px; background: var(--ink); color: #fff; }
+.pbtn--solid:hover { background: var(--ink); color: #fff; transform: none; }
+.pbtn--quiet,
+.pcard .pbtn:not(.pbtn--solid) { box-shadow: inset 0 0 0 1px var(--line); }
+.pbtn--quiet { height: 40px; font-size: 14px; }
+.pbtn--small { height: 34px; font-size: 13px; letter-spacing: 0; }
+
+/* Type -------------------------------------------------------------------- */
+.mono { letter-spacing: 0.04em; }
+.plogin h1 em,
+.pdash__hello h1 em {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: inherit;
+}
+.plogin h1 em { color: rgba(13, 13, 18, 0.32); }
+.pdash__hello h1 em { color: var(--ice); }
+
+/* Sign in ----------------------------------------------------------------- */
+.plogin {
+  position: relative;
+  min-height: calc(100svh - 160px);
+  align-items: center;
+  padding-top: clamp(1rem, 4vw, 3rem);
+}
+.plogin > div,
+.pcard--login { position: relative; z-index: 1; }
+.plogin__field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+}
+.plogin__field.is-ready { opacity: 1; }
+.plogin__field.is-failed { display: none; }
+.plogin__eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.plogin__eyebrow i { background: var(--ice); box-shadow: 0 0 0 4px rgba(47, 68, 255, 0.14); }
+.plogin h1 {
+  font-size: clamp(3rem, 7.6vw, 7.4rem);
+  line-height: 0.9;
+}
+.plogin__foot { border-top-color: var(--line); }
+.pcard--login {
+  border: 0;
+  border-radius: var(--radius);
+  padding: clamp(1.6rem, 3.4vw, 2.6rem);
+  box-shadow: 0 40px 80px -40px rgba(13, 13, 18, 0.35);
+}
+.pcard--login h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.045em; }
+
+/* Fields */
+.pfield__label { letter-spacing: 0.04em; }
+.pfield input,
+.pfield select,
+.pfield textarea {
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: var(--bg);
+}
+.pfield input:focus,
+.pfield select:focus,
+.pfield textarea:focus { border-color: var(--ice); background: #fff; box-shadow: 0 0 0 4px rgba(47, 68, 255, 0.12); }
+.pstatus { letter-spacing: 0.02em; }
+.pstatus--ok { color: var(--ok); }
+
+/* Dashboard --------------------------------------------------------------- */
+.pdash__head { border-bottom: 0; padding-bottom: 0; }
+.pdash__hello h1 { font-size: clamp(2.4rem, 5vw, 4.6rem); line-height: 0.95; letter-spacing: -0.055em; }
+.pdash__contact a { color: var(--ink); border-bottom-color: var(--ink); }
+.pcard {
+  border: 0;
+  border-radius: var(--radius);
+  padding: clamp(1.3rem, 2.4vw, 2rem);
+}
+.pcard__head { border-bottom-color: var(--line); }
+.pcard__head h2 { font-size: clamp(1.2rem, 1.6vw, 1.5rem); letter-spacing: -0.04em; }
+.pproject__bar { border-radius: 99px; overflow: hidden; background: var(--bg-2); }
+.pproject__bar span { border-radius: 99px; background: var(--ice); }
+.pupdate { border-left-color: var(--line); }
+.pupdate::before { background: var(--ice); }
+
+/* Status tags: pills with fixed meaning colours */
+.tag { border-radius: 99px; font-size: 11px; letter-spacing: 0.04em; padding: 5px 10px; }
+.tag[data-status='live'],
+.tag[data-status='paid'] { color: var(--ok); border-color: rgba(23, 145, 90, 0.3); background: rgba(23, 145, 90, 0.08); }
+.tag[data-status='review'],
+.tag[data-status='sent'] { color: var(--gold); border-color: rgba(183, 121, 31, 0.3); background: rgba(183, 121, 31, 0.08); }
+.tag[data-status='paused'],
+.tag[data-status='overdue'] { color: var(--ember); border-color: rgba(214, 69, 61, 0.3); background: rgba(214, 69, 61, 0.07); }
+.tag[data-status='discovery'],
+.tag[data-status='building'] { color: var(--ice); border-color: rgba(47, 68, 255, 0.25); background: rgba(47, 68, 255, 0.06); }
+
+.pnotice { border-radius: var(--radius); }
+.portal-foot { font-size: 11px; letter-spacing: 0.06em; }
+
+@media (max-width: 760px) {
+  .pbar__link { height: 40px; padding: 0 14px; font-size: 14px; }
+  .pbar__brand small { display: none; }
+  .pbar__brand { font-size: 17px; gap: 8px; }
+  .pbar__brand img { width: 24px; height: 24px; }
+  .pbar__right { gap: 12px; }
+  .plogin { min-height: 0; padding-top: 34vw; }
+}
