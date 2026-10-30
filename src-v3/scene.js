@@ -9,7 +9,7 @@
    -------------------------------------------------------------------------- */
 
 import {
-  WebGLRenderer, Scene, PerspectiveCamera, Mesh, Points, PlaneGeometry, ShaderMaterial,
+  WebGLRenderer, Scene, PerspectiveCamera, Mesh, Group, Points, PlaneGeometry, ShaderMaterial,
   MeshPhysicalMaterial, ExtrudeGeometry, Shape, DirectionalLight, HemisphereLight,
   PMREMGenerator, ACESFilmicToneMapping, SRGBColorSpace, Vector2, Vector3, Plane, Raycaster, DoubleSide,
 } from 'three';
@@ -185,21 +185,47 @@ function makeDots(segX, segY, uniforms, pixelRatio) {
   return new Points(geometry, material);
 }
 
-function makeStar() {
+/* The Nexora mark (assets/logo-mark.png): a four-pointed sparkle split along
+   a diagonal into two pieces, each with concave sides. Tips are traced from the
+   338 px logo image; each side curves in towards its piece's centre. */
+const LOGO_PIECES = [
+  [[160, 15], [292, 148], [185, 210], [128, 97]],
+  [[47, 185], [150, 128], [208, 240], [175, 322]],
+];
+
+function logoShape(tips) {
+  const pts = tips.map(([x, y]) => [(x - 170) / 130, -(y - 168) / 130]);
+  const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length;
+  const cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
   const shape = new Shape();
-  for (let i = 0; i < 8; i += 1) {
-    const a = (i / 8) * Math.PI * 2 + Math.PI / 2;
-    const r = i % 2 === 0 ? 1.2 : 0.3;
-    if (i === 0) shape.moveTo(Math.cos(a) * r, Math.sin(a) * r);
-    else shape.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+  shape.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 0; i < pts.length; i += 1) {
+    const a = pts[i];
+    const b = pts[(i + 1) % pts.length];
+    const mx = (a[0] + b[0]) / 2;
+    const my = (a[1] + b[1]) / 2;
+    const pull = 0.62;
+    shape.quadraticCurveTo(mx + (cx - mx) * pull, my + (cy - my) * pull, b[0], b[1]);
   }
-  shape.closePath();
-  const geometry = new ExtrudeGeometry(shape, { depth: 0.36, bevelEnabled: true, bevelThickness: 0.1, bevelSize: 0.07, bevelSegments: 8 });
-  geometry.center();
-  return new Mesh(geometry, new MeshPhysicalMaterial({
-    color: 0xc6ff3d, roughness: 0.22, metalness: 0.05, clearcoat: 1, clearcoatRoughness: 0.08,
-    iridescence: 0.4, iridescenceIOR: 1.35,
-  }));
+  return shape;
+}
+
+function makeLogo() {
+  // Polished chrome, like the silver mark in the header.
+  const chrome = new MeshPhysicalMaterial({
+    color: 0xe4e8ee, metalness: 0.9, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.05, envMapIntensity: 1.6,
+  });
+  const logo = new Group();
+  // Nudge the halves apart so the diagonal split reads as a clean gap.
+  const apart = [[0.045, 0.045], [-0.045, -0.045]];
+  LOGO_PIECES.forEach((tips, k) => {
+    const geometry = new ExtrudeGeometry(logoShape(tips), {
+      depth: 0.26, bevelEnabled: true, bevelThickness: 0.07, bevelSize: 0.045, bevelSegments: 10, curveSegments: 40,
+    });
+    geometry.translate(apart[k][0], apart[k][1], -0.13);
+    logo.add(new Mesh(geometry, chrome));
+  });
+  return logo;
 }
 
 function init() {
@@ -238,7 +264,7 @@ function init() {
     scene.add(m);
   });
 
-  const star = makeStar();
+  const star = makeLogo();
   scene.add(star);
 
   /* ---------- Size and placement ---------- */
@@ -251,8 +277,8 @@ function init() {
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     const narrow = w <= 860;
-    if (narrow) { starHome.set(0, 1.6, 0.5); starScale = 0.75; }
-    else { starHome.set(3.2 * Math.min(camera.aspect / 1.6, 1.3), 0.3, 1); starScale = 1.3; }
+    if (narrow) { starHome.set(0, 1.2, 0.5); starScale = 0.85; }
+    else { starHome.set(3.2 * Math.min(camera.aspect / 1.6, 1.3), -0.05, 1); starScale = 1.5; }
   }
   window.addEventListener('resize', resize);
   resize();
@@ -318,7 +344,8 @@ function init() {
       starHome.z + Math.cos(t * 0.4) * 0.2,
     );
     star.scale.setScalar(starScale * Math.max(0.001, 1 - Math.min(away / 0.9, 1)));
-    star.rotation.y = t * 0.35;
+    // Sway instead of spinning, so the logo always faces the viewer.
+    star.rotation.y = Math.sin(t * 0.45) * 0.55 + pointer.x * 0.25;
     star.rotation.x = Math.sin(t * 0.3) * 0.22 + pointer.y * 0.15;
     star.rotation.z = Math.sin(t * 0.25) * 0.08 - pointer.x * 0.1;
   }
