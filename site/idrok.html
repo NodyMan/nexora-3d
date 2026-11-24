@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>IDrok case study — Nexora Studio</title>
+  <meta name="description" content="How we designed and built IDrok, a light digital library for Uzbek readers with an AI librarian, Alif." />
+  <meta name="theme-color" content="#0c100f" />
+  <link rel="canonical" href="https://nexorastudio.world/idrok.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexora Studio" />
+  <meta property="og:title" content="IDrok case study — Nexora Studio" />
+  <meta property="og:description" content="How we designed and built IDrok, a light digital library for Uzbek readers with an AI librarian, Alif." />
+  <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
+  <meta property="og:url" content="https://nexorastudio.world/idrok.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Doto:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/v11.css" />
+  <link rel="stylesheet" href="./css/v11-pages.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="./js/vendor/gsap.min.js"></script>
+  <script defer src="./js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./js/vendor/lenis.min.js"></script>
+  <script defer src="./js/v11.js"></script>
+  <script defer src="./js/v11-widgets.js"></script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+</head>
+<body data-page="IDrok">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="bg" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="curtain" aria-hidden="true"><b></b></div>
+  <header class="top">
+    <a class="top__brand" href="./index.html" data-name="Nexora" aria-label="Nexora Studio — home"><img src="./assets/logo-mark.png" alt="" width="26" height="26" />NEXORA</a>
+    <nav class="top__nav" aria-label="Main"><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a></nav>
+    <a class="btn btn--accent" href="./contact.html" data-name="Contact">Let's talk</a>
+    <button class="top__menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <nav class="drawer" aria-label="Menu"><a href="./index.html" data-name="Home">Home</a><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a><a href="./contact.html" data-name="Contact">Contact</a></nav>
+  <main id="main">
+    <section class="hero ">
+      <div class="wrap">
+        <span class="label hero__kicker">Case study · Library · AI</span>
+        <h1 class="hero__title">IDrok<em>.</em></h1>
+        <div class="hero__foot">
+          <p class="serif">A digital library that fits on any phone: Uzbek books and academic papers in one app, with a comfortable reader and an AI librarian.</p>
+          <div class="actions"><a class="btn btn--ghost" href="./work.html" data-name="Work">← All work</a><a class="btn btn--accent" href="https://idroklib.uz" target="_blank" rel="noopener">Visit idroklib.uz ↗</a></div>
+        </div>
+      </div>
+      <span class="hero__hint" aria-hidden="true">Scroll</span>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <div class="case__media case__media--wide" data-clip style="--glow:#ff6a2b"><img src="./assets/shots/idrok-alif-720.webp" alt="Chat with Alif, the AI librarian in IDrok" width="420" height="947" loading="lazy" /><img src="./assets/shots/idrok-library-720.webp" alt="IDrok library screen with books in progress" width="420" height="947" loading="lazy" /><img src="./assets/shots/idrok-reader-720.webp" alt="IDrok reader settings with themes and text-to-speech" width="420" height="947" loading="lazy" /></div>
+        <dl class="facts" data-fade><div><dt>Product</dt><dd>Mobile app and website</dd></div><div><dt>Platforms</dt><dd>Android and web</dd></div><div><dt>Website</dt><dd><a href="https://idroklib.uz" target="_blank" rel="noopener">idroklib.uz ↗</a></dd></div><div><dt>Our role</dt><dd>Product, design, engineering, AI</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Status</dt><dd>Live</dd></div></dl>
+        <dl class="figs figs--wide" data-fade><div><dt>Books</dt><dd data-count="713">713</dd></div><div><dt>Quiz questions</dt><dd data-count="1256">1,256</dd></div><div><dt>App size, MB</dt><dd data-count="7.05" data-decimals="2">7.05</dd></div></dl>
+      </div>
+    </section>
+
+    <div class="wrap chapters">
+      <section class="chapter">
+        <div class="chapter__label"><span class="label">01 — The problem</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>Books were scattered across Telegram channels.</h2>
+          <div class="prose" data-fade><p>Readers in Uzbekistan looked for books in dozens of Telegram channels and on old websites that were never made for a phone. Files were hard to find, hard to read and easy to lose.</p><p>We set out to put them in one place that is pleasant to read in and light enough for any phone.</p></div>
+        </div>
+      </section>
+      <section class="chapter">
+        <div class="chapter__label"><span class="label">02 — What we built</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>One library, a good reader and an AI librarian.</h2>
+          <div class="features"><div class="feature" data-fade><span class="feature__n">01</span><h3>My Library</h3><p>Continue reading where you stopped, keep your own books and PDFs, and browse the collection.</p></div><div class="feature" data-fade><span class="feature__n">02</span><h3>Comfortable reader</h3><p>Three display modes, day, sepia, dark and night themes, adjustable fonts, text-to-speech with speed control, bookmarks and notes.</p></div><div class="feature" data-fade><span class="feature__n">03</span><h3>Alif, the AI librarian</h3><p>Alif finds pages, quotes books from the library, explains key ideas and makes a personal reading plan.</p></div><div class="feature" data-fade><span class="feature__n">04</span><h3>Arena</h3><p>Quizzes on book chapters with XP and reader ranks, so reading turns into a habit.</p></div></div>
+          <div class="shots"><figure class="shot" data-fade><img src="./assets/shots/idrok-library-720.webp" alt="IDrok library screen with books in progress" width="420" height="947" loading="lazy" /><figcaption><b>My Library</b>Books in progress, your own uploads and the full collection.</figcaption></figure><figure class="shot" data-fade><img src="./assets/shots/idrok-alif-720.webp" alt="Chat with Alif, the AI librarian in IDrok" width="420" height="947" loading="lazy" /><figcaption><b>Alif AI</b>Chat, book picks and a reading plan in one place.</figcaption></figure><figure class="shot" data-fade><img src="./assets/shots/idrok-reader-720.webp" alt="IDrok reader settings with themes and text-to-speech" width="420" height="947" loading="lazy" /><figcaption><b>Reader settings</b>Themes, fonts, text-to-speech, search, bookmarks and notes.</figcaption></figure></div>
+        </div>
+      </section>
+      <section class="chapter" id="engineering">
+        <div class="chapter__label"><span class="label">03 — Engineering</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>Light, not stripped down.</h2>
+          <div class="prose" data-fade><p>The Android app weighs 7.05 MB. That is not a limit we set for every product: it is what this one needed, because many readers use older phones and limited mobile data.</p></div>
+          <ul class="checks"><li>Chapters load as you read instead of downloading the whole catalogue</li><li>Only the pages you have opened are saved on the phone</li><li>Covers are prepared in light image formats for every screen size</li><li>No third-party SDK slows down the start of the app</li></ul>
+          <div class="prose" data-fade><p>The result is an app a student can download on mobile data without thinking about it, with nothing cut to get there. Each product gets the size its job needs; what carries over is the habit of making every kilobyte earn its place.</p></div>
+          <p data-fade><a class="link" href="./journal.html#seven-mb" data-name="Journal">Read the full note in our journal →</a></p>
+        </div>
+      </section>
+      <section class="chapter">
+        <div class="chapter__label"><span class="label">04 — Technology</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>Android, web and AI.</h2>
+          <div class="prose" data-fade><p>IDrok works as an Android app and on the web at idroklib.uz. Before the rename it was called DigitalLib.</p></div>
+          <div class="tags"><i>Android</i><i>Web</i><i>WebView reader</i><i>LLM</i><i>Text-to-speech</i></div>
+        </div>
+      </section>
+    </div>
+    <a class="next" href="./skyblink.html" data-name="SkyBlink">
+      <span class="next__fill" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="next__label">Next case study</span>
+        <span class="next__title"><span>SkyBlink</span><span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
+      <nav aria-label="Footer"><a href="./journal.html" data-name="Journal">Journal</a><a href="./estimate.html" data-name="Estimate">Estimate a timeline</a><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><a href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a><a href="./privacy.html" data-name="Privacy">Privacy & cookies</a></nav>
+    </div>
+  </footer>
+  <aside class="cookie" data-cookie hidden aria-label="Cookies">
+    <p><b>Cookies & storage.</b> We use only what the site needs to work. With your OK, the chat assistant also remembers your conversation on this device. No ads, no tracking.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--accent" type="button" data-consent="all">Accept</button>
+      <button class="btn btn--ghost" type="button" data-consent="essential">Only essential</button>
+      <a class="link" href="./privacy.html" data-name="Privacy">Details</a>
+    </div>
+  </aside>
+
+  <div class="chat" data-chat>
+    <button class="chat__launch" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+      <span class="chat__dot" aria-hidden="true"></span><span class="chat__launch-text">Ask Nexora</span>
+      <svg class="chat__close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Chat with the Nexora assistant" hidden data-lenis-prevent>
+      <header class="chat__head">
+        <span class="chat__avatar" aria-hidden="true">N</span>
+        <div><b>Nexora assistant</b><small data-chat-status>Answers about our services, process and products</small></div>
+      </header>
+      <div class="chat__log" data-chat-log aria-live="polite"></div>
+      <div class="chat__quick" data-chat-quick></div>
+      <form class="chat__form" data-chat-form>
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="1" maxlength="800" placeholder="Ask about services, prices, timelines…" data-chat-input></textarea>
+        <button class="chat__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="chat__note">AI assistant — it can make mistakes. For anything binding, <a href="./contact.html" data-name="Contact">write to the team</a>.</p>
+    </section>
+  </div>
+</body>
+</html>

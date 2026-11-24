@@ -4,197 +4,139 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Work — Nexora Studio</title>
-  <meta name="description" content="Arise and DigitalLib: two platforms designed, engineered and operated by the Nexora Studio founding team." />
-  <meta name="theme-color" content="#f3f4ef" />
+  <meta name="description" content="Arise, IDrok and SkyBlink: the products Nexora Studio built." />
+  <meta name="theme-color" content="#0c100f" />
   <link rel="canonical" href="https://nexorastudio.world/work.html" />
-  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Nexora Studio" />
   <meta property="og:title" content="Work — Nexora Studio" />
-  <meta property="og:description" content="Arise and DigitalLib: two platforms designed, engineered and operated by the Nexora Studio founding team." />
+  <meta property="og:description" content="Arise, IDrok and SkyBlink: the products Nexora Studio built." />
   <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
   <meta property="og:url" content="https://nexorastudio.world/work.html" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Work — Nexora Studio" />
-  <meta name="twitter:description" content="Arise and DigitalLib: two platforms designed, engineered and operated by the Nexora Studio founding team." />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&family=Unbounded:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="./styles.css" />
-  <script type="module" src="./js/main.js"></script>
-  <script type="module" src="./js/scene.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Doto:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/v11.css" />
+  <link rel="stylesheet" href="./css/v11-pages.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="./js/vendor/gsap.min.js"></script>
+  <script defer src="./js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./js/vendor/lenis.min.js"></script>
+  <script defer src="./js/v11.js"></script>
+  <script defer src="./js/v11-widgets.js"></script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
-<body>
-  <canvas class="webgl" aria-hidden="true"></canvas>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="./index.html" aria-label="Nexora Studio — home">
-        <img src="./assets/logo-mark.png" alt="" width="26" height="26" />
-        <span>Nexora<span>Studio</span></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html" aria-current="page">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-      </nav>
-      <div class="header-actions">
-        <div class="lang-switch" data-lang-group role="group" aria-label="Language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
-        </div>
-        <a class="btn" href="./contact.html">Start a project</a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="menu-toggle__label">Menu</span></button>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <div class="wrap">
-        <nav aria-label="Mobile">
-          <a href="./index.html">Home</a>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html" aria-current="page">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-        </nav>
-        <div class="mobile-menu__foot">
-          <div class="lang-row"><span class="label">Language</span><div class="lang-switch" data-lang-group role="group" aria-label="Language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
-        </div></div>
-          <a class="btn" href="./contact.html">Start a project</a>
-        </div>
-      </div>
-    </div>
+<body data-page="Work">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="bg" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="curtain" aria-hidden="true"><b></b></div>
+  <header class="top">
+    <a class="top__brand" href="./index.html" data-name="Nexora" aria-label="Nexora Studio — home"><img src="./assets/logo-mark.png" alt="" width="26" height="26" />NEXORA</a>
+    <nav class="top__nav" aria-label="Main"><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work" aria-current="page">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a></nav>
+    <a class="btn btn--accent" href="./contact.html" data-name="Contact">Let's talk</a>
+    <button class="top__menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </header>
-
+  <nav class="drawer" aria-label="Menu"><a href="./index.html" data-name="Home">Home</a><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a><a href="./contact.html" data-name="Contact">Contact</a></nav>
   <main id="main">
-    <section class="hero hero--page">
-      <div class="hero__space hero__space--page" aria-hidden="true"></div>
+    <section class="hero ">
       <div class="wrap">
-        <span class="label rise">Selected work</span>
-        <h1 class="display rise" style="--d:80ms">Products we built, <em>shipped and still run.</em></h1>
+        <span class="label hero__kicker">Work</span>
+        <h1 class="hero__title">Products we<br /><em>built.</em></h1>
         <div class="hero__foot">
-          <p class="lede rise" style="--d:160ms">Two platforms of our own, designed, engineered and operated by the founding team. The imagery below is from the live products.</p>
-          <div class="actions rise" style="--d:220ms"><a class="link" href="#arise">Open the case studies</a></div>
+          <p class="serif">We started with our own products, tested every decision on real users, and we still run them today. SkyBlink is our NASA Space Apps 2026 project.</p>
+          
         </div>
-        <dl class="facts rise" style="--d:280ms">
-          <div><dt class="label">Platforms live</dt><dd><b>02</b>Arise and DigitalLib</dd></div>
-          <div><dt class="label">Shipped</dt><dd><b>2026</b>Both still operated by us</dd></div>
-          <div><dt class="label">Languages</dt><dd><b>EN · RU · UZ</b>In both products</dd></div>
-        </dl>
       </div>
+      <span class="hero__hint" aria-hidden="true">Scroll</span>
     </section>
 
-    <article class="wrap study" id="arise">
-      <div class="study__info">
-        <span class="label">Case study 01 · In-house product</span>
-        <h2 class="display">Arise</h2>
-        <p class="lede" style="color:var(--ink)">An AI-guided ascent from school to university.</p>
-        <p>Arise is a study and career-guidance ecosystem for students in Uzbekistan. It connects a student's ambition to a concrete route: university matching, skill-building and an AI mentor who knows the path.</p>
-        <p>Ari, the platform's multilingual mentor, constructs milestones around each goal and stays inside the product's guardrails. The result is guidance that feels personal without inventing facts.</p>
-        <dl class="spec">
-          <div><dt class="label">Platform</dt><dd>Android</dd></div>
-          <div><dt class="label">Languages</dt><dd>EN · RU · UZ</dd></div>
-          <div><dt class="label">Year</dt><dd>2026</dd></div>
-          <div><dt class="label">Role</dt><dd>Design, engineering, AI</dd></div>
-        </dl>
-        <ul class="checks">
-          <li>Personal admissions roadmap, matched to dream universities</li>
-          <li>Ari — a mentor fluent in English, Russian and Uzbek</li>
-          <li>Gamified skill trees, streak rituals and milestone tracking</li>
-          <li>Native mobile performance with offline resilience</li>
-        </ul>
-        <p class="muted">Planning an education, health or AI product? <a class="link" href="./contact.html">Talk to the founders</a></p>
-      </div>
-      <div class="study__screens">
-        <figure><div class="shot"><img src="./assets/work/arise-welcome.jpg" alt="Arise welcome screen with Ari, the multilingual AI mentor." width="1177" height="2560" loading="lazy" decoding="async" /></div><figcaption>First run — meet Ari</figcaption></figure>
-        <figure><div class="shot"><img src="./assets/work/arise-skilltree.jpg" alt="Arise skill tree with subject progress and milestones." width="1177" height="2560" loading="lazy" decoding="async" /></div><figcaption>Skill tree and milestones</figcaption></figure>
-        <figure><div class="shot"><img src="./assets/work/arise-ari.jpg" alt="Chat with Ari giving a student the next step of their route." width="1177" height="2560" loading="lazy" decoding="async" /></div><figcaption>Ari — conversational mentor</figcaption></figure>
-      </div>
-    </article>
+    <div class="marquee" aria-hidden="true"><div class="marquee__row"><span>Arise</span><span class="o">IDrok</span><span>SkyBlink</span><span class="o">Arise</span><span>IDrok</span><span class="o">SkyBlink</span></div></div>
 
-    <article class="wrap study" id="digitallib">
-      <div class="study__info">
-        <span class="label">Case study 02 · In-house product</span>
-        <h2 class="display">DigitalLib</h2>
-        <p class="lede" style="color:var(--ink)">A national reading platform, light enough for any phone.</p>
-        <p>Digital reading in Central Asia was split between disordered Telegram channels and archaic portals that were never built for a phone. DigitalLib replaces both with one coherent reading space.</p>
-        <p>The platform combines a verified national catalogue, a private academic vault, an adaptive reader with text-to-speech, and an arena of chapter-level quizzes. It is fast enough to work where the network is not.</p>
-        <dl class="spec">
-          <div><dt class="label">Platform</dt><dd>Android · Web · PWA</dd></div>
-          <div><dt class="label">Catalogue</dt><dd>713 books</dd></div>
-          <div><dt class="label">Year</dt><dd>2026</dd></div>
-          <div><dt class="label">Role</dt><dd>Design, engineering, AI</dd></div>
-        </dl>
-        <ul class="checks">
-          <li>Instant in-browser reading without filling device storage</li>
-          <li>Private vault for syllabi, notes and PDFs</li>
-          <li>Alif AI librarian — recommendations, summaries and study plans</li>
-          <li>1,256 verified quiz questions with XP and reader ranks</li>
-          <li>7.05 MB Android APK, built for low-bandwidth regions</li>
-        </ul>
-        <p class="muted">Building a platform for a market that has been underserved? <a class="link" href="./contact.html">Talk to the founders</a></p>
-      </div>
-      <div class="study__screens">
-        <figure><div class="shot"><img src="./assets/work/digitallib-home.jpg" alt="DigitalLib library home with catalogue and private vault." width="900" height="2030" loading="lazy" decoding="async" /></div><figcaption>Library &amp; private vault</figcaption></figure>
-        <figure><div class="shot"><img src="./assets/work/digitallib-reader.jpg" alt="DigitalLib reader with theme and text-to-speech controls." width="900" height="2030" loading="lazy" decoding="async" /></div><figcaption>Adaptive reader and TTS</figcaption></figure>
-        <figure><div class="shot"><img src="./assets/work/digitallib-alif.jpg" alt="Alif, the AI librarian, recommending books." width="900" height="2030" loading="lazy" decoding="async" /></div><figcaption>Alif AI librarian</figcaption></figure>
-      </div>
-    </article>
-
-    <section class="section section--dark">
-      <div class="wrap cta">
-        <span class="label">Contact</span>
-        <h2 class="display">Your product <em>could be next.</em></h2>
-        <div class="cta__row">
-          <p>We take on a small number of client projects at a time. If the standard fits, tell us what you are building.</p>
-          <div class="actions">
-            <a class="btn btn--light" href="./contact.html">Start a project</a>
-            <a class="cta__mail" href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
-          </div>
+    <section class="case">
+      <div class="wrap case__grid">
+        <div class="case__media" data-clip style="--glow:#3b5bff"><img src="./assets/shots/arise-welcome-720.webp" alt="Arise welcome screen with sign-in by Google, Apple or as a guest" width="420" height="914" loading="lazy" /><img src="./assets/shots/arise-ari-720.webp" alt="Chat with Ari, the AI mentor in Arise" width="420" height="914" loading="lazy" /><img src="./assets/shots/arise-skills-720.webp" alt="Arise skill tree for a future UX designer" width="420" height="914" loading="lazy" /></div>
+        <div class="case__copy">
+          <div class="case__meta" data-fade><span>EdTech</span><span>AI</span><span>iOS · Android</span></div>
+          <h2 class="cond case__name" data-split>Arise</h2>
+          <p class="serif" data-fade>Finds the right career, university and grant for each student.</p>
+          <p data-fade>Students tell Arise what they want to become. Ari, the built-in AI mentor, turns that goal into a plan: which skills to learn, which courses to take and what to do this week.</p>
+          <dl class="figs" data-fade><div><dt>Languages</dt><dd data-count="3">3</dd></div><div><dt>Platforms</dt><dd data-count="2">2</dd></div><div><dt>Sign-in options</dt><dd data-count="3">3</dd></div></dl>
+          <div class="actions" data-fade><a class="link" href="./arise.html" data-name="Arise">Read the case study →</a></div>
         </div>
       </div>
     </section>
+    <section class="case case--flip">
+      <div class="wrap case__grid">
+        <div class="case__media" data-clip style="--glow:#ff6a2b"><img src="./assets/shots/idrok-library-720.webp" alt="IDrok library screen with books in progress" width="420" height="947" loading="lazy" /><img src="./assets/shots/idrok-alif-720.webp" alt="Chat with Alif, the AI librarian in IDrok" width="420" height="947" loading="lazy" /><img src="./assets/shots/idrok-reader-720.webp" alt="IDrok reader settings with themes and text-to-speech" width="420" height="947" loading="lazy" /></div>
+        <div class="case__copy">
+          <div class="case__meta" data-fade><span>Library</span><span>AI</span><span>Android · Web</span></div>
+          <h2 class="cond case__name" data-split>IDrok</h2>
+          <p class="serif" data-fade>A personal digital library that works on any phone.</p>
+          <p data-fade>IDrok brings books and academic papers into one app with a comfortable reader. Alif, its AI librarian, finds pages, explains ideas and suggests what to read next.</p>
+          <dl class="figs" data-fade><div><dt>Books</dt><dd data-count="713">713</dd></div><div><dt>Quiz questions</dt><dd data-count="1256">1,256</dd></div><div><dt>App size, MB</dt><dd data-count="7.05" data-decimals="2">7.05</dd></div></dl>
+          <div class="actions" data-fade><a class="link" href="./idrok.html" data-name="IDrok">Read the case study →</a><a class="link" href="https://idroklib.uz" target="_blank" rel="noopener">idroklib.uz ↗</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="case">
+      <div class="wrap case__grid">
+        <div class="case__media case__media--web" data-clip style="--glow:#2fbf71"><img src="./assets/shots/skyblink-home-1280.webp" srcset="./assets/shots/skyblink-home-720.webp 720w, ./assets/shots/skyblink-home-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink start page: search for a star or coordinates and five challenge objects" width="1280" height="800" loading="lazy" /><img src="./assets/shots/skyblink-diff-1280.webp" srcset="./assets/shots/skyblink-diff-720.webp 720w, ./assets/shots/skyblink-diff-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink difference view of Epsilon Indi B: a black-and-white pair and a measured shift of 6.0 ± 1.1 arcseconds" width="1280" height="800" loading="lazy" /></div>
+        <div class="case__copy">
+          <div class="case__meta" data-fade><span>NASA Space Apps 2026</span><span>Science</span><span>Web</span></div>
+          <h2 class="cond case__name" data-split>SkyBlink</h2>
+          <p class="serif" data-fade>A free web tool that shows how the sky changes in NASA SPHEREx data.</p>
+          <p data-fade>Type a star name or coordinates. SkyBlink fetches real SPHEREx images from NASA/IPAC IRSA, aligns visits taken months apart and blinks them, the technique that found Pluto in 1930. For the brown dwarf Epsilon Indi B it measured a shift of 6.0 ± 1.1″; the catalogue predicts 6.5″.</p>
+          <dl class="figs" data-fade><div><dt>Measured shift, ″</dt><dd data-count="6.0" data-decimals="1">6.0</dd></div><div><dt>Error, ± ″</dt><dd data-count="1.1" data-decimals="1">1.1</dd></div><div><dt>Catalogue, ″</dt><dd data-count="6.5" data-decimals="1">6.5</dd></div></dl>
+          <div class="actions" data-fade><a class="link" href="./skyblink.html" data-name="SkyBlink">Read the case study →</a><a class="link" href="https://frontend-three-xi-80.vercel.app" target="_blank" rel="noopener">Open the app ↗</a><a class="link" href="https://github.com/NodyMan/Wally-Vision" target="_blank" rel="noopener">GitHub ↗</a><a class="link" href="https://github.com/NodyMan/Wally-Vision/blob/main/video/SkyBlink_demo.mp4" target="_blank" rel="noopener">Demo video ↗</a></div>
+        </div>
+      </div>
+    </section>
+    <a class="next" href="./team.html" data-name="Team">
+      <span class="next__fill" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="next__label">Next page</span>
+        <span class="next__title"><span>Team</span><span aria-hidden="true">→</span></span>
+      </div>
+    </a>
   </main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <p>Three founders. Every line of code.</p>
-        </div>
-        <nav aria-label="Footer">
-          <span class="label">Navigate</span>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-          <a href="./portal.html">Client portal</a>
-        </nav>
-        <div>
-          <span class="label">Contact</span>
-          <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
-          <a href="mailto:support@nexorastudio.world?subject=Application%20%E2%80%94%20Nexora%20Studio">Careers</a>
-          <a href="./contact.html">Start a project</a>
-        </div>
-        <div>
-          <span class="label">Studio</span>
-          <span class="muted">Fergana, Uzbekistan</span>
-          <span class="muted num"><span data-clock>FER 00:00</span> · UTC+5</span>
-          <span class="status">Open for new projects</span>
-        </div>
-      </div>
-      <div class="footer-word" aria-hidden="true" data-no-i18n>Nexora</div>
-      <div class="footer-bottom mono">
-        <span>© <span data-year>2026</span> Nexora Studio</span>
-        <span>Engineered in Fergana · EN / RU / UZ</span>
-      </div>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
+      <nav aria-label="Footer"><a href="./journal.html" data-name="Journal">Journal</a><a href="./estimate.html" data-name="Estimate">Estimate a timeline</a><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><a href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a><a href="./privacy.html" data-name="Privacy">Privacy & cookies</a></nav>
     </div>
   </footer>
+  <aside class="cookie" data-cookie hidden aria-label="Cookies">
+    <p><b>Cookies & storage.</b> We use only what the site needs to work. With your OK, the chat assistant also remembers your conversation on this device. No ads, no tracking.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--accent" type="button" data-consent="all">Accept</button>
+      <button class="btn btn--ghost" type="button" data-consent="essential">Only essential</button>
+      <a class="link" href="./privacy.html" data-name="Privacy">Details</a>
+    </div>
+  </aside>
+
+  <div class="chat" data-chat>
+    <button class="chat__launch" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+      <span class="chat__dot" aria-hidden="true"></span><span class="chat__launch-text">Ask Nexora</span>
+      <svg class="chat__close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Chat with the Nexora assistant" hidden data-lenis-prevent>
+      <header class="chat__head">
+        <span class="chat__avatar" aria-hidden="true">N</span>
+        <div><b>Nexora assistant</b><small data-chat-status>Answers about our services, process and products</small></div>
+      </header>
+      <div class="chat__log" data-chat-log aria-live="polite"></div>
+      <div class="chat__quick" data-chat-quick></div>
+      <form class="chat__form" data-chat-form>
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="1" maxlength="800" placeholder="Ask about services, prices, timelines…" data-chat-input></textarea>
+        <button class="chat__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="chat__note">AI assistant — it can make mistakes. For anything binding, <a href="./contact.html" data-name="Contact">write to the team</a>.</p>
+    </section>
+  </div>
 </body>
 </html>

@@ -4,182 +4,165 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Team — Nexora Studio</title>
-  <meta name="description" content="Three founders across systems, machine learning and design. No account layer, no hand-offs." />
-  <meta name="theme-color" content="#f3f4ef" />
+  <meta name="description" content="The people behind Nexora Studio, Arise and IDrok." />
+  <meta name="theme-color" content="#0c100f" />
   <link rel="canonical" href="https://nexorastudio.world/team.html" />
-  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Nexora Studio" />
   <meta property="og:title" content="Team — Nexora Studio" />
-  <meta property="og:description" content="Three founders across systems, machine learning and design. No account layer, no hand-offs." />
+  <meta property="og:description" content="The people behind Nexora Studio, Arise and IDrok." />
   <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
   <meta property="og:url" content="https://nexorastudio.world/team.html" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Team — Nexora Studio" />
-  <meta name="twitter:description" content="Three founders across systems, machine learning and design. No account layer, no hand-offs." />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&family=Unbounded:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="./styles.css" />
-  <script type="module" src="./js/main.js"></script>
-  <script type="module" src="./js/scene.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Doto:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/v11.css" />
+  <link rel="stylesheet" href="./css/v11-pages.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="./js/vendor/gsap.min.js"></script>
+  <script defer src="./js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./js/vendor/lenis.min.js"></script>
+  <script defer src="./js/v11.js"></script>
+  <script defer src="./js/v11-widgets.js"></script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
-<body>
-  <canvas class="webgl" aria-hidden="true"></canvas>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="./index.html" aria-label="Nexora Studio — home">
-        <img src="./assets/logo-mark.png" alt="" width="26" height="26" />
-        <span>Nexora<span>Studio</span></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html" aria-current="page">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-      </nav>
-      <div class="header-actions">
-        <div class="lang-switch" data-lang-group role="group" aria-label="Language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
-        </div>
-        <a class="btn" href="./contact.html">Start a project</a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="menu-toggle__label">Menu</span></button>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <div class="wrap">
-        <nav aria-label="Mobile">
-          <a href="./index.html">Home</a>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html" aria-current="page">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-        </nav>
-        <div class="mobile-menu__foot">
-          <div class="lang-row"><span class="label">Language</span><div class="lang-switch" data-lang-group role="group" aria-label="Language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
-        </div></div>
-          <a class="btn" href="./contact.html">Start a project</a>
-        </div>
-      </div>
-    </div>
+<body data-page="Team">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="bg" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="curtain" aria-hidden="true"><b></b></div>
+  <header class="top">
+    <a class="top__brand" href="./index.html" data-name="Nexora" aria-label="Nexora Studio — home"><img src="./assets/logo-mark.png" alt="" width="26" height="26" />NEXORA</a>
+    <nav class="top__nav" aria-label="Main"><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team" aria-current="page">Team</a><a href="./journal.html" data-name="Journal">Journal</a></nav>
+    <a class="btn btn--accent" href="./contact.html" data-name="Contact">Let's talk</a>
+    <button class="top__menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </header>
-
+  <nav class="drawer" aria-label="Menu"><a href="./index.html" data-name="Home">Home</a><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a><a href="./contact.html" data-name="Contact">Contact</a></nav>
   <main id="main">
-    <section class="hero hero--page">
-      <div class="hero__space hero__space--page" aria-hidden="true"></div>
+    <section class="hero ">
       <div class="wrap">
-        <span class="label rise">Founders</span>
-        <h1 class="display rise" style="--d:80ms">The people <em>on every line of code.</em></h1>
+        <span class="label hero__kicker">Team</span>
+        <h1 class="hero__title">The<br /><em>people.</em></h1>
         <div class="hero__foot">
-          <p class="lede rise" style="--d:160ms">Three partners across systems, machine learning and design. No account layer, no hand-offs to a team you have never met.</p>
-          <div class="actions rise" style="--d:220ms"><a class="link" href="#open-seat">Apply to the studio</a></div>
+          <p class="serif">A small team: you talk directly to the people who design and build your product.</p>
+          
         </div>
       </div>
+      <span class="hero__hint" aria-hidden="true">Scroll</span>
     </section>
 
-    <section class="section section--tight">
+    <section class="sec" style="padding-top:0">
       <div class="wrap">
-        <ul class="people people--four">
-          <li class="person">
-            <div class="person__mark" data-role="CTO" aria-hidden="true">MN</div>
-            <span class="mono muted">Co-founder · CTO</span>
-            <h3 class="h3">Makhmud Nasriddinov</h3>
-            <p>Systems architecture, mobile engineering and cloud operations. Architect of the Arise platforms.</p>
-          </li>
-          <li class="person">
-            <div class="person__mark" data-role="CAIO" aria-hidden="true">NX</div>
-            <span class="mono muted">Co-founder · CAIO</span>
-            <h3 class="h3">Nurahmadov Xayrullo</h3>
-            <p>Applied machine learning, LLM mentors and retrieval systems. Architect of Ari, the mentor inside Arise.</p>
-          </li>
-          <li class="person">
-            <div class="person__mark" data-role="Design" aria-hidden="true">AN</div>
-            <span class="mono muted">Co-founder · Design</span>
-            <h3 class="h3">Abduraximov Nizomiddin</h3>
-            <p>Product design, art direction and design systems. Directs the tactile feel and visual identity of every product.</p>
-          </li>
-          <li class="person person--open" id="open-seat">
-            <div class="person__mark" data-role="Open seat" aria-hidden="true">+</div>
-            <span class="mono muted">Selective hiring</span>
-            <h3 class="h3">Exceptional builders.</h3>
-            <p>We hire masters of their craft, not seats to fill. If your work is undeniable, show us.</p>
-            <a class="link" href="mailto:support@nexorastudio.world?subject=Application%20%E2%80%94%20Nexora%20Studio" style="width:fit-content">Apply to the studio</a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section--panel">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="label">What we believe</span>
-          <h2 class="h2">Four rules we don't break.</h2>
-        </div>
-        <ul class="rows">
-          <li class="row"><h3 class="h3">No intermediaries.</h3><p>The founder on your first call is the person who architects, builds and answers for your product. No account managers, no relay race.</p><span></span></li>
-          <li class="row"><h3 class="h3">Small by design.</h3><p>We keep only a few projects running at once, so every one gets the full attention of the people who started the studio.</p><span></span></li>
-          <li class="row"><h3 class="h3">Honest about limits.</h3><p>If something can't be done well, or we are not the right team, we say so on the first call — not after the invoice.</p><span></span></li>
-          <li class="row"><h3 class="h3">We stay after launch.</h3><p>Releases, monitoring and iteration are part of the job. We run our own products the same way.</p><span></span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section section--dark">
-      <div class="wrap cta">
-        <span class="label">Contact</span>
-        <h2 class="display">Talk to the people who will <em>build it</em>.</h2>
-        <div class="cta__row">
-          <p>Every conversation starts with a founder. Tell us what you are building and who it has to serve.</p>
-          <div class="actions">
-            <a class="btn btn--light" href="./contact.html">Start a project</a>
-            <a class="cta__mail" href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
+        <span class="label">Founders</span>
+        <ul class="people"><li class="person" data-fade><button class="person__open" type="button" data-profile="p-mn" aria-haspopup="dialog"><span class="person__ini">MN</span><span class="person__role">Co-founder · CTO</span><h3>Makhmud Nasriddinov</h3><p>Leads architecture and mobile development. Built the Arise platform.</p><span class="person__more">Open profile <span aria-hidden="true">+</span></span></button></li><li class="person" data-fade><button class="person__open" type="button" data-profile="p-nx" aria-haspopup="dialog"><span class="person__ini">NX</span><span class="person__role">Co-founder · CAIO</span><h3>Nurahmadov Xayrullo</h3><p>Leads AI work. Designed Ari, the mentor inside Arise.</p><span class="person__more">Open profile <span aria-hidden="true">+</span></span></button></li><li class="person" data-fade><button class="person__open" type="button" data-profile="p-an" aria-haspopup="dialog"><span class="person__ini">AN</span><span class="person__role">Co-founder · Design</span><h3>Abduraximov Nizomiddin</h3><p>Leads product design and the visual identity of every product.</p><span class="person__more">Open profile <span aria-hidden="true">+</span></span></button></li></ul>
+        <dialog class="profile" data-lenis-prevent id="p-mn" aria-labelledby="p-mn-name">
+      <div class="profile__inner">
+        <button class="profile__close" type="button" data-close aria-label="Close">×</button>
+        <span class="profile__ini" aria-hidden="true">MN</span>
+        <div class="profile__body">
+          <span class="label">Co-founder · CTO</span>
+          <h2 class="profile__name" id="p-mn-name">Makhmud Nasriddinov</h2>
+          <p class="serif">Makhmud (Tim) is a software engineer and Nexora's CTO. He leads architecture and mobile development, and built the Arise platform. He is a student at Registan Private School and is heading into AI and computer engineering.</p>
+          <div class="profile__cols">
+            <div><span class="profile__h">Focus</span><div class="tags"><i>Architecture</i><i>React Native & Expo</i><i>Flutter</i><i>Three.js / WebGL</i><i>Supabase</i></div></div>
+            <div><span class="profile__h">Built</span><ul class="profile__built"><li>Arise — platform and mobile app</li><li>Neo — voice-first personal AI agent</li><li>Nexora Studio site and client portal</li><li>SkyBlink — core viewer (NASA Space Apps 2026)</li></ul></div>
           </div>
+          <a class="profile__note" href="./journal.html#seven-mb" data-name="Journal"><span class="profile__h">From the journal</span>Light, not stripped down →</a>
+          <div class="profile__links"><a class="profile__link" href="https://tim-nasriddinov.vercel.app" target="_blank" rel="noopener">Portfolio <span aria-hidden="true">↗</span></a><a class="profile__link" href="https://www.linkedin.com/in/mahmud-nasriddinov-b02b09436/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a><a class="profile__link" href="https://github.com/NodyMan" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a><a class="profile__link" href="mailto:bynasriddinov@gmail.com">Email <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </dialog><dialog class="profile" data-lenis-prevent id="p-nx" aria-labelledby="p-nx-name">
+      <div class="profile__inner">
+        <button class="profile__close" type="button" data-close aria-label="Close">×</button>
+        <span class="profile__ini" aria-hidden="true">NX</span>
+        <div class="profile__body">
+          <span class="label">Co-founder · CAIO</span>
+          <h2 class="profile__name" id="p-nx-name">Nurahmadov Xayrullo</h2>
+          <p class="serif">Xayrullo leads AI work at Nexora. He designed Ari, the mentor inside Arise, around one rule: facts come from a verified catalogue, the model only builds the plan.</p>
+          <div class="profile__cols">
+            <div><span class="profile__h">Focus</span><div class="tags"><i>Applied AI</i><i>LLMs</i><i>Retrieval</i><i>Python</i></div></div>
+            <div><span class="profile__h">Built</span><ul class="profile__built"><li>Ari — AI mentor in Arise</li><li>Alif — AI librarian in IDrok</li><li>SkyBlink — science layers (NASA Space Apps 2026)</li></ul></div>
+          </div>
+          <a class="profile__note" href="./journal.html#guardrails" data-name="Journal"><span class="profile__h">From the journal</span>Guardrails before magic →</a>
+          <div class="profile__links"><a class="profile__link" href="mailto:support@nexorastudio.world?subject=For%20Nurahmadov%20Xayrullo">Email <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </dialog><dialog class="profile" data-lenis-prevent id="p-an" aria-labelledby="p-an-name">
+      <div class="profile__inner">
+        <button class="profile__close" type="button" data-close aria-label="Close">×</button>
+        <span class="profile__ini" aria-hidden="true">AN</span>
+        <div class="profile__body">
+          <span class="label">Co-founder · Design</span>
+          <h2 class="profile__name" id="p-an-name">Abduraximov Nizomiddin</h2>
+          <p class="serif">Nizomiddin leads product design at Nexora: research, user flows, interfaces and the visual identity of every product we ship.</p>
+          <div class="profile__cols">
+            <div><span class="profile__h">Focus</span><div class="tags"><i>Product design</i><i>Design systems</i><i>Brand</i><i>Figma</i></div></div>
+            <div><span class="profile__h">Built</span><ul class="profile__built"><li>Arise — interface and identity</li><li>IDrok — reader and library design</li><li>SkyBlink — platform (NASA Space Apps 2026)</li></ul></div>
+          </div>
+          <a class="profile__note" href="./journal.html#capacity" data-name="Journal"><span class="profile__h">From the journal</span>Two engagements per quarter →</a>
+          <div class="profile__links"><a class="profile__link" href="mailto:support@nexorastudio.world?subject=For%20Abduraximov%20Nizomiddin">Email <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </dialog>
+        <div class="hiring" data-fade>
+          <div><h3>We're hiring.</h3><p>We look for engineers and designers who care about details. Send us your work.</p></div>
+          <a class="btn btn--ink" href="mailto:support@nexorastudio.world?subject=Application%20%E2%80%94%20Nexora%20Studio">Apply →</a>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <p>Three founders. Every line of code.</p>
-        </div>
-        <nav aria-label="Footer">
-          <span class="label">Navigate</span>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-          <a href="./portal.html">Client portal</a>
-        </nav>
-        <div>
-          <span class="label">Contact</span>
-          <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
-          <a href="mailto:support@nexorastudio.world?subject=Application%20%E2%80%94%20Nexora%20Studio">Careers</a>
-          <a href="./contact.html">Start a project</a>
-        </div>
-        <div>
-          <span class="label">Studio</span>
-          <span class="muted">Fergana, Uzbekistan</span>
-          <span class="muted num"><span data-clock>FER 00:00</span> · UTC+5</span>
-          <span class="status">Open for new projects</span>
-        </div>
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <span class="label">How we work</span>
+        <h2 class="cond" style="font-size:clamp(56px,8vw,130px);margin-bottom:56px" data-split>What you can<br />expect from us.</h2>
+        <ul class="values"><li data-fade><h3>You talk to the team.</h3><p>You work directly with the designers and engineers on your project. No layers of managers between you and the work.</p></li><li data-fade><h3>Small by design.</h3><p>We take on a few projects at a time, so each one gets real attention.</p></li><li data-fade><h3>Honest about limits.</h3><p>If something can't be done well, or we are not the right team, we say so on the first call.</p></li><li data-fade><h3>We stay after launch.</h3><p>Releases, monitoring and iteration are part of the job. We run our own products the same way.</p></li></ul>
       </div>
-      <div class="footer-word" aria-hidden="true" data-no-i18n>Nexora</div>
-      <div class="footer-bottom mono">
-        <span>© <span data-year>2026</span> Nexora Studio</span>
-        <span>Engineered in Fergana · EN / RU / UZ</span>
+    </section>
+    <a class="next" href="./journal.html" data-name="Journal">
+      <span class="next__fill" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="next__label">Next page</span>
+        <span class="next__title"><span>Journal</span><span aria-hidden="true">→</span></span>
       </div>
+    </a>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
+      <nav aria-label="Footer"><a href="./journal.html" data-name="Journal">Journal</a><a href="./estimate.html" data-name="Estimate">Estimate a timeline</a><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><a href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a><a href="./privacy.html" data-name="Privacy">Privacy & cookies</a></nav>
     </div>
   </footer>
+  <aside class="cookie" data-cookie hidden aria-label="Cookies">
+    <p><b>Cookies & storage.</b> We use only what the site needs to work. With your OK, the chat assistant also remembers your conversation on this device. No ads, no tracking.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--accent" type="button" data-consent="all">Accept</button>
+      <button class="btn btn--ghost" type="button" data-consent="essential">Only essential</button>
+      <a class="link" href="./privacy.html" data-name="Privacy">Details</a>
+    </div>
+  </aside>
+
+  <div class="chat" data-chat>
+    <button class="chat__launch" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+      <span class="chat__dot" aria-hidden="true"></span><span class="chat__launch-text">Ask Nexora</span>
+      <svg class="chat__close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Chat with the Nexora assistant" hidden data-lenis-prevent>
+      <header class="chat__head">
+        <span class="chat__avatar" aria-hidden="true">N</span>
+        <div><b>Nexora assistant</b><small data-chat-status>Answers about our services, process and products</small></div>
+      </header>
+      <div class="chat__log" data-chat-log aria-live="polite"></div>
+      <div class="chat__quick" data-chat-quick></div>
+      <form class="chat__form" data-chat-form>
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="1" maxlength="800" placeholder="Ask about services, prices, timelines…" data-chat-input></textarea>
+        <button class="chat__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="chat__note">AI assistant — it can make mistakes. For anything binding, <a href="./contact.html" data-name="Contact">write to the team</a>.</p>
+    </section>
+  </div>
 </body>
 </html>

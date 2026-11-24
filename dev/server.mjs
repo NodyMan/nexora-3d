@@ -2,15 +2,19 @@
 // in-memory store. Never used in production; there is no seed path or admin
 // secret in the deployed Function.
 import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
+import { readFile, stat, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { application } from '../functions/routes.mjs';
+import { hashPassword } from './password-hash.mjs';
 import { webcrypto } from 'node:crypto';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', process.env.SITE_DIR || 'site');
 const PORT = Number(process.env.PORT || 4173);
-const DEMO_ADMIN = 'studio-master-2026';
+// Local-only console login; production uses ADMIN_USERNAME / ADMIN_PASSWORD_HASH from Vercel.
+const DEMO_ADMIN_USER = 'studio';
+const DEMO_ADMIN = 'Local-Studio#2026';
+const demoAdminHash = await hashPassword(DEMO_ADMIN);
 const DEMO_CODE = 'DEMO-2026';
 const DEMO_EMAIL = 'dilnoza@arise.example';
 
@@ -43,12 +47,14 @@ class Query {
   }
   select(columns) { this.columns = columns; return this; }
   eq(column, value) { this.filters.push([column, value]); return this; }
+  gte(column, value) { this.filters.push([column, value, 'gte']); return this; }
+  is(column, value) { this.filters.push([column, value, 'is']); return this; }
   order(column, options = {}) { this.orderBy = [column, options.ascending !== false]; return this; }
   limit(count) { this.limitN = count; return this; }
   insert(payload) { this.op = 'insert'; this.payload = payload; this.columns = null; return this; }
   update(payload) { this.op = 'update'; this.payload = payload; return this; }
   delete() { this.op = 'delete'; return this; }
-  matches(row) { return this.filters.every(([column, value]) => row[column] === value); }
+  matches(row) { return this.filters.every(([column, value, op]) => (op === 'gte' ? row[column] >= value : op === 'is' ? (row[column] ?? null) === value : row[column] === value)); }
   run() {
     const rows = this.store[this.table];
     if (this.op === 'insert') {
@@ -80,6 +86,7 @@ class Query {
 
 const store = {
   inquiries: [],
+  call_bookings: [],
   portal_clients: [],
   portal_access_codes: [],
   portal_sessions: [],
@@ -87,6 +94,9 @@ const store = {
   portal_updates: [],
   portal_invoices: [],
   portal_files: [],
+  admin_login_failures: [],
+  admin_users: [{ username: DEMO_ADMIN_USER, password_hash: demoAdminHash, created_at: new Date().toISOString() }],
+  admin_setup_codes: [],
 };
 const uploads = new Map();
 
@@ -105,11 +115,32 @@ const storage = {
   },
 };
 
+// DEV_FAKE_MAIL=1: emails are written to dev/.mail/ instead of being sent, so the
+// brief → confirmation → portal code flow can be tried locally.
+const MAIL_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '.mail');
+let mailCount = 0;
+const fakeMail = process.env.DEV_FAKE_MAIL
+  ? {
+      env: (name) => ({ RESEND_API_KEY: 'dev-fake', CONTACT_TO_EMAIL: 'studio@local.test' })[name],
+      async fetchImpl(url, init) {
+        if (!String(url).startsWith('https://api.resend.com/')) return fetch(url, init);
+        const message = JSON.parse(init.body);
+        mailCount += 1;
+        await mkdir(MAIL_DIR, { recursive: true });
+        const base = path.join(MAIL_DIR, `${String(mailCount).padStart(3, '0')}`);
+        await writeFile(`${base}.txt`, `To: ${message.to.join(', ')}\nSubject: ${message.subject}\n\n${message.text}`);
+        if (message.html) await writeFile(`${base}.html`, message.html);
+        console.log(`[mail] ${message.to.join(', ')} — ${message.subject} → ${base}.txt`);
+        return new Response(JSON.stringify({ id: `dev-${mailCount}` }), { status: 200 });
+      },
+    }
+  : { env: () => undefined };
+
 const handle = application({
   db,
   storage,
   BackendError,
-  env: (name) => ({ PORTAL_ADMIN: DEMO_ADMIN })[name],
+  ...fakeMail,
 });
 
 const digest = async (value) => {
@@ -275,6 +306,6 @@ const server = createServer(async (request, response) => {
 
 server.listen(PORT, '127.0.0.1', () => {
   console.log(`Nexora QA server on http://127.0.0.1:${PORT}`);
-  console.log(`Admin console code: ${DEMO_ADMIN}`);
+  console.log(`Admin console (local only): ${DEMO_ADMIN_USER} / ${DEMO_ADMIN}`);
   console.log(`Client portal: ${DEMO_EMAIL} / ${DEMO_CODE}`);
 });

@@ -27,16 +27,48 @@
   <main class="admin" data-admin-root data-view="loading">
     <section class="admin__login" id="admin-login" hidden>
       <h1>Studio console</h1>
-      <p>Operations for clients, delivery, invoices and files. The console code is set in the site's private settings.</p>
+      <p>Operations for clients, delivery, invoices and files. Sign in with your studio username and password.</p>
       <form id="admin-form" novalidate>
+        <label class="pfield">
+          <span class="pfield__label">Username</span>
+          <input type="text" name="username" id="admin-username" required autocomplete="username" spellcheck="false" autocapitalize="off" maxlength="64" />
+        </label>
         <label class="pfield pfield--code">
-          <span class="pfield__label">Console code</span>
-          <input type="password" name="code" id="admin-code-input" required autocomplete="current-password" spellcheck="false" maxlength="200" placeholder="••••••••" />
+          <span class="pfield__label">Password</span>
+          <input type="password" name="password" id="admin-password" required autocomplete="current-password" spellcheck="false" maxlength="200" placeholder="••••••••••••" />
         </label>
         <button class="pbtn pbtn--solid pbtn--block" type="submit" id="admin-submit">
           <span id="admin-submit-label">Open console</span> <span aria-hidden="true">↗</span>
         </button>
         <p class="pstatus" id="admin-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="admin__login" id="admin-setup" hidden>
+      <h1>Create your console login</h1>
+      <p>First time here. Enter the one-time setup code, then choose your username and a strong password. The code works once.</p>
+      <form id="setup-form" novalidate>
+        <label class="pfield">
+          <span class="pfield__label">Setup code</span>
+          <input type="text" name="code" required autocomplete="one-time-code" spellcheck="false" autocapitalize="characters" maxlength="40" />
+        </label>
+        <label class="pfield">
+          <span class="pfield__label">Username</span>
+          <input type="text" name="username" required autocomplete="username" spellcheck="false" autocapitalize="off" maxlength="32" pattern="[A-Za-z0-9._\-]{3,32}" />
+        </label>
+        <label class="pfield pfield--code">
+          <span class="pfield__label">Password</span>
+          <input type="password" name="password" required autocomplete="new-password" minlength="12" maxlength="200" />
+        </label>
+        <label class="pfield pfield--code">
+          <span class="pfield__label">Repeat password</span>
+          <input type="password" name="repeat" required autocomplete="new-password" minlength="12" maxlength="200" />
+        </label>
+        <p class="pstatus">At least 12 characters, with upper- and lowercase letters, a digit and a symbol.</p>
+        <button class="pbtn pbtn--solid pbtn--block" type="submit" id="setup-submit">
+          <span id="setup-submit-label">Create login</span> <span aria-hidden="true">↗</span>
+        </button>
+        <p class="pstatus" id="setup-status" role="status" aria-live="polite"></p>
       </form>
     </section>
 
@@ -69,6 +101,10 @@
       </div>
 
       <div class="admin__panel" id="panel-inquiries" role="tabpanel" aria-labelledby="tab-inquiries">
+        <section class="pcard" style="margin-bottom:16px">
+          <div class="pcard__head"><h2>Booked calls</h2><span class="mono" id="admin-bookings-count"></span></div>
+          <div id="admin-bookings"></div>
+        </section>
         <section class="pcard">
           <div class="pcard__head"><h2>Incoming briefs</h2><span class="mono" id="admin-inquiries-count"></span></div>
           <div id="admin-inquiries"></div>
@@ -201,5 +237,6 @@
   <div class="admin__toast" id="admin-toast" role="status" aria-live="polite"></div>
 
   <script type="module" src="./admin.js"></script>
+  <script type="module" src="./admin-bookings.js"></script>
 </body>
 </html>

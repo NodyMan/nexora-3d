@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SkyBlink case study — Nexora Studio</title>
+  <meta name="description" content="How we built SkyBlink for NASA Space Apps 2026: a web tool that blinks real SPHEREx images and measures how far stars moved." />
+  <meta name="theme-color" content="#0c100f" />
+  <link rel="canonical" href="https://nexorastudio.world/skyblink.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexora Studio" />
+  <meta property="og:title" content="SkyBlink case study — Nexora Studio" />
+  <meta property="og:description" content="How we built SkyBlink for NASA Space Apps 2026: a web tool that blinks real SPHEREx images and measures how far stars moved." />
+  <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
+  <meta property="og:url" content="https://nexorastudio.world/skyblink.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Doto:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/v11.css" />
+  <link rel="stylesheet" href="./css/v11-pages.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="./js/vendor/gsap.min.js"></script>
+  <script defer src="./js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./js/vendor/lenis.min.js"></script>
+  <script defer src="./js/v11.js"></script>
+  <script defer src="./js/v11-widgets.js"></script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+</head>
+<body data-page="SkyBlink">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="bg" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="curtain" aria-hidden="true"><b></b></div>
+  <header class="top">
+    <a class="top__brand" href="./index.html" data-name="Nexora" aria-label="Nexora Studio — home"><img src="./assets/logo-mark.png" alt="" width="26" height="26" />NEXORA</a>
+    <nav class="top__nav" aria-label="Main"><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a></nav>
+    <a class="btn btn--accent" href="./contact.html" data-name="Contact">Let's talk</a>
+    <button class="top__menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <nav class="drawer" aria-label="Menu"><a href="./index.html" data-name="Home">Home</a><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a><a href="./contact.html" data-name="Contact">Contact</a></nav>
+  <main id="main">
+    <section class="hero ">
+      <div class="wrap">
+        <span class="label hero__kicker">Case study · Science · NASA Space Apps 2026</span>
+        <h1 class="hero__title">SkyBlink<em>.</em></h1>
+        <div class="hero__foot">
+          <p class="serif">A free web tool that blinks real infrared images from NASA's SPHEREx mission, so moving stars and brown dwarfs stand out, and measures how far they moved.</p>
+          <div class="actions"><a class="btn btn--ghost" href="./work.html" data-name="Work">← All work</a><a class="btn btn--accent" href="https://frontend-three-xi-80.vercel.app" target="_blank" rel="noopener">Open SkyBlink ↗</a><a class="btn btn--ghost" href="https://github.com/NodyMan/Wally-Vision/blob/main/video/SkyBlink_demo.mp4" target="_blank" rel="noopener">Watch the demo ↗</a></div>
+        </div>
+      </div>
+      <span class="hero__hint" aria-hidden="true">Scroll</span>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <div class="case__media case__media--wide case__media--web" data-clip style="--glow:#2fbf71"><img src="./assets/shots/skyblink-home-1280.webp" srcset="./assets/shots/skyblink-home-720.webp 720w, ./assets/shots/skyblink-home-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink start page: search for a star or coordinates and five challenge objects" width="1280" height="800" loading="lazy" /><img src="./assets/shots/skyblink-diff-1280.webp" srcset="./assets/shots/skyblink-diff-720.webp 720w, ./assets/shots/skyblink-diff-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink difference view of Epsilon Indi B: a black-and-white pair and a measured shift of 6.0 ± 1.1 arcseconds" width="1280" height="800" loading="lazy" /></div>
+        <dl class="facts" data-fade><div><dt>Product</dt><dd>Web app</dd></div><div><dt>Event</dt><dd>NASA Space Apps 2026, Tashkent</dd></div><div><dt>Data</dt><dd>NASA SPHEREx via IRSA</dd></div><div><dt>Team</dt><dd>Makhmud, Xayrullo, Nizomiddin, Intizor</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Links</dt><dd><a href="https://github.com/NodyMan/Wally-Vision" target="_blank" rel="noopener">GitHub ↗</a> · <a href="https://github.com/NodyMan/Wally-Vision/blob/main/video/SkyBlink_demo.mp4" target="_blank" rel="noopener">Video ↗</a></dd></div></dl>
+        <dl class="figs figs--wide" data-fade><div><dt>Measured shift, ″</dt><dd data-count="6.0" data-decimals="1">6.0</dd></div><div><dt>Error, ± ″</dt><dd data-count="1.1" data-decimals="1">1.1</dd></div><div><dt>Catalogue, ″</dt><dd data-count="6.5" data-decimals="1">6.5</dd></div></dl>
+      </div>
+    </section>
+
+    <div class="wrap chapters">
+      <section class="chapter">
+        <div class="chapter__label"><span class="label">01 — The challenge</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>Find what moves in a new map of the sky.</h2>
+          <div class="prose" data-fade><p>NASA's SPHEREx telescope maps the whole sky in infrared and comes back to the same patch months later. The NASA Space Apps 2026 challenge “Planet X and SPHEREx” asked for ways to look for moving and changing objects in that data.</p><p>The images are free, but comparing them takes astronomy software and a lot of patience. We wanted anyone to see the change in a browser.</p></div>
+        </div>
+      </section>
+      <section class="chapter">
+        <div class="chapter__label"><span class="label">02 — What we built</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>A blink comparator in the browser.</h2>
+          <div class="features"><div class="feature" data-fade><span class="feature__n">01</span><h3>Blink</h3><p>SkyBlink downloads real SPHEREx images of one patch of sky, aligns visits taken months apart and plays them as an animation. Moving objects jump.</p></div><div class="feature" data-fade><span class="feature__n">02</span><h3>Difference</h3><p>Subtracting one visit from another turns a moving object into a black-and-white pair: where it was, and where it is now.</p></div><div class="feature" data-fade><span class="feature__n">03</span><h3>Measured shift</h3><p>SkyBlink measures the shift in arcseconds with an error, checks the alignment against fixed stars and compares the result with the catalogue.</p></div><div class="feature" data-fade><span class="feature__n">04</span><h3>For everyone</h3><p>Search by star name or coordinates, five ready objects to start with, a Simple mode, and the interface in English, Russian and Uzbek.</p></div></div>
+          <div class="shots"><figure class="shot" data-fade><img src="./assets/shots/skyblink-home-1280.webp" srcset="./assets/shots/skyblink-home-720.webp 720w, ./assets/shots/skyblink-home-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink start page: search for a star or coordinates and five challenge objects" width="1280" height="800" loading="lazy" /><figcaption><b>Start</b>Type a star name or coordinates, or pick one of five challenge objects.</figcaption></figure><figure class="shot" data-fade><img src="./assets/shots/skyblink-blink-1280.webp" srcset="./assets/shots/skyblink-blink-720.webp 720w, ./assets/shots/skyblink-blink-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink blink view of the brown dwarf Epsilon Indi B in real SPHEREx images" width="1280" height="800" loading="lazy" /><figcaption><b>Blink</b>The brown dwarf Epsilon Indi B across four visits, aligned on one grid.</figcaption></figure><figure class="shot" data-fade><img src="./assets/shots/skyblink-diff-1280.webp" srcset="./assets/shots/skyblink-diff-720.webp 720w, ./assets/shots/skyblink-diff-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 50vw" alt="SkyBlink difference view of Epsilon Indi B: a black-and-white pair and a measured shift of 6.0 ± 1.1 arcseconds" width="1280" height="800" loading="lazy" /><figcaption><b>Difference</b>The black-and-white pair and the measured shift next to the catalogue value.</figcaption></figure></div>
+        </div>
+      </section>
+      <section class="chapter" id="numbers">
+        <div class="chapter__label"><span class="label">03 — Honest numbers</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>We only claim what we measured.</h2>
+          <div class="prose" data-fade><p>Every number in SkyBlink comes from real SPHEREx images, and every shift comes with its error. When the data cannot answer, the app says so.</p></div>
+          <ul class="checks"><li>Epsilon Indi B: 6.0 ± 1.1″, the catalogue predicts 6.5″</li><li>Barnard's Star: 11.9 ± 1.3″ against 10.4″ in the catalogue; its core is saturated, so the value is indicative</li><li>WISE 0855, the coldest known brown dwarf, is too faint in this data to measure a shift, and the app does not claim one</li><li>A moving source with no Gaia match is shown as a candidate to check, not as a discovery</li></ul>
+          <div class="prose" data-fade><p>The spectrum and light-curve tabs are labelled as previews.</p></div>
+        </div>
+      </section>
+      <section class="chapter">
+        <div class="chapter__label"><span class="label">04 — Technology</span></div>
+        <div class="chapter__body">
+          <h2 class="cond chapter__title" data-split>Real data from NASA/IPAC IRSA.</h2>
+          <div class="prose" data-fade><p>The backend is Django with Astropy and reproject: it downloads SPHEREx image cutouts from NASA/IPAC IRSA, puts every visit on one pixel grid and measures the shift. The frontend is Next.js with an Aladin Lite sky map.</p><p>SkyBlink is an independent team project, not an official NASA product. The code is open source under the MIT licence.</p></div>
+          <div class="tags"><i>Python</i><i>Django</i><i>Astropy</i><i>reproject</i><i>Next.js</i><i>React</i><i>Aladin Lite</i></div>
+        </div>
+      </section>
+    </div>
+    <a class="next" href="./arise.html" data-name="Arise">
+      <span class="next__fill" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="next__label">Next case study</span>
+        <span class="next__title"><span>Arise</span><span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
+      <nav aria-label="Footer"><a href="./journal.html" data-name="Journal">Journal</a><a href="./estimate.html" data-name="Estimate">Estimate a timeline</a><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><a href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a><a href="./privacy.html" data-name="Privacy">Privacy & cookies</a></nav>
+    </div>
+  </footer>
+  <aside class="cookie" data-cookie hidden aria-label="Cookies">
+    <p><b>Cookies & storage.</b> We use only what the site needs to work. With your OK, the chat assistant also remembers your conversation on this device. No ads, no tracking.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--accent" type="button" data-consent="all">Accept</button>
+      <button class="btn btn--ghost" type="button" data-consent="essential">Only essential</button>
+      <a class="link" href="./privacy.html" data-name="Privacy">Details</a>
+    </div>
+  </aside>
+
+  <div class="chat" data-chat>
+    <button class="chat__launch" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+      <span class="chat__dot" aria-hidden="true"></span><span class="chat__launch-text">Ask Nexora</span>
+      <svg class="chat__close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Chat with the Nexora assistant" hidden data-lenis-prevent>
+      <header class="chat__head">
+        <span class="chat__avatar" aria-hidden="true">N</span>
+        <div><b>Nexora assistant</b><small data-chat-status>Answers about our services, process and products</small></div>
+      </header>
+      <div class="chat__log" data-chat-log aria-live="polite"></div>
+      <div class="chat__quick" data-chat-quick></div>
+      <form class="chat__form" data-chat-form>
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="1" maxlength="800" placeholder="Ask about services, prices, timelines…" data-chat-input></textarea>
+        <button class="chat__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="chat__note">AI assistant — it can make mistakes. For anything binding, <a href="./contact.html" data-name="Contact">write to the team</a>.</p>
+    </section>
+  </div>
+</body>
+</html>
