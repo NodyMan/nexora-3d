@@ -66,6 +66,16 @@
       "destination": "/arise.html"
     },
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "skyblink.nexorastudio.world"
+        }
+      ],
+      "destination": "/skyblink.html"
+    },
+    {
       "source": "/functions/v1/app/api/contact",
       "destination": "/api/contact"
     },
