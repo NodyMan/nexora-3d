@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin.html
-Disallow: /portal.html
-
-Sitemap: https://nexorastudio.world/sitemap.xml

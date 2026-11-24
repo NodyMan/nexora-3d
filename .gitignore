@@ -1,2 +1,8 @@
 .vercel
 .env*
+
+# Local QA output and old site versions (kept out of the repo)
+.qa/
+backup-*/
+site-v*/
+src-v*/
