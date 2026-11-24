@@ -564,6 +564,12 @@ TEAM = [
     ('AN', 'Abduraximov Nizomiddin', 'Co-founder · Design', 'Leads product design and the visual identity of every product.'),
 ]
 
+# The wider team, shown under the founders.
+MEMBERS = [
+    ('MA', 'Muhammadali Abdurahmanov', 'Investor · Developer', 'Investor and developer. Has built and backed several startups, including Celamur.'),
+    ('BT', 'Bahodir Toshtemirov', 'AI-native developer', 'Our resident vibe-coder. Builds features end to end with AI tools.'),
+]
+
 # Profile popup for each founder. Fill in the links; an empty link is not shown.
 PROFILES = {
     'MN': {
@@ -593,6 +599,18 @@ PROFILES = {
         'note': ('Two engagements per quarter', './journal.html#capacity'),
         'links': {'LinkedIn': '', 'GitHub': '', 'X': '', 'Telegram': ''},
     },
+    'MA': {
+        'about': 'Muhammadali is an investor and developer at Nexora. He has built and backed several startups, among them Celamur: personalised digital gifts with a named envelope, your own words, photos and a finale, all shared through one link. He brings product and business experience to the studio.',
+        'focus': ['Startups', 'Investment', 'Product strategy', 'Development'],
+        'built': ['Celamur — personalised digital gifts', 'Several startups as founder, developer and investor'],
+        'links': {'Celamur': 'https://celamur.com'},
+    },
+    'BT': {
+        'about': 'Bahodir is Nexora\'s resident vibe-coder. He builds features end to end with AI-assisted development tools, going from an idea to a working product fast. He studied at iTeach.',
+        'focus': ['Vibe-coding', 'AI tools', 'Rapid prototyping'],
+        'built': ['Features and prototypes across Nexora projects'],
+        'links': {},
+    },
 }
 
 
@@ -609,21 +627,26 @@ def profile_dialog(ini, name, role):
         links += f'<a class="profile__link" href="mailto:{EMAIL}?subject=For%20{to}">Email <span aria-hidden="true">↗</span></a>'
     focus = ''.join(f'<i>{f}</i>' for f in p['focus'])
     built = ''.join(f'<li>{b}</li>' for b in p['built'])
-    t, h = p['note']
+    note = ''
+    if p.get('note'):
+        t, h = p['note']
+        note = f'<a class="profile__note" href="{h}" data-name="Journal"><span class="profile__h">From the journal</span>{t} →</a>'
     pid = 'p-' + ini.lower()
+    # Very long surnames get a smaller heading so they stay inside the dialog.
+    long = ' profile__name--long' if max(len(w) for w in name.split()) > 11 else ''
     return f'''<dialog class="profile" data-lenis-prevent id="{pid}" aria-labelledby="{pid}-name">
       <div class="profile__inner">
         <button class="profile__close" type="button" data-close aria-label="Close">×</button>
         <span class="profile__ini" aria-hidden="true">{ini}</span>
         <div class="profile__body">
           <span class="label">{role}</span>
-          <h2 class="profile__name" id="{pid}-name">{name}</h2>
+          <h2 class="profile__name{long}" id="{pid}-name">{name}</h2>
           <p class="serif">{p['about']}</p>
           <div class="profile__cols">
             <div><span class="profile__h">Focus</span><div class="tags">{focus}</div></div>
             <div><span class="profile__h">Built</span><ul class="profile__built">{built}</ul></div>
           </div>
-          <a class="profile__note" href="{h}" data-name="Journal"><span class="profile__h">From the journal</span>{t} →</a>
+          {note}
           <div class="profile__links">{links}</div>
         </div>
       </div>
@@ -638,14 +661,19 @@ VALUES = [
 ]
 
 
-def team():
-    people = ''.join(
+def person_cards(group):
+    return ''.join(
         f'<li class="person" data-fade><button class="person__open" type="button" data-profile="p-{i.lower()}" aria-haspopup="dialog">'
         f'<span class="person__ini">{i}</span><span class="person__role">{r}</span><h3>{n}</h3><p>{b}</p>'
         f'<span class="person__more">Open profile <span aria-hidden="true">+</span></span></button></li>'
-        for i, n, r, b in TEAM
+        for i, n, r, b in group
     )
-    dialogs = ''.join(profile_dialog(i, n, r) for i, n, r, _ in TEAM)
+
+
+def team():
+    people = person_cards(TEAM)
+    members = person_cards(MEMBERS)
+    dialogs = ''.join(profile_dialog(i, n, r) for i, n, r, _ in TEAM + MEMBERS)
     values = ''.join(f'<li data-fade><h3>{t}</h3><p>{d}</p></li>' for t, d in VALUES)
     body = f'''{hero('Team', 'The<br /><em>people.</em>',
                 'A small team: you talk directly to the people who design and build your product.')}
@@ -654,6 +682,8 @@ def team():
       <div class="wrap">
         <span class="label">Founders</span>
         <ul class="people">{people}</ul>
+        <span class="label" style="display:block;margin-top:56px">Team</span>
+        <ul class="people">{members}</ul>
         {dialogs}
         <div class="hiring" data-fade>
           <div><h3>We're hiring.</h3><p>We look for engineers and designers who care about details. Send us your work.</p></div>

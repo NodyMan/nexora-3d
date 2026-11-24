@@ -386,3 +386,7 @@ html.is-modal { overflow: hidden; }
   .profile__link { height: 38px; padding: 0 14px; }
   .profile__ini { font-size: clamp(100px, 24vh, 200px); padding: 24px; }
 }
+
+/* Profile dialog: keep long names inside the card */
+.profile__body { min-width: 0; }
+.profile__name--long { font-size: clamp(32px, 4.4vw, 68px); }

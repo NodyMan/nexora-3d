@@ -2,3 +2,9 @@
 .env*
 node_modules
 dev/.mail
+
+# Python cache, local QA output and old site versions
+__pycache__/
+.qa/
+backup-*/
+site-v*/
