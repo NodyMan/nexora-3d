@@ -36,6 +36,14 @@ if (menuToggle && mobileMenu) {
   window.addEventListener('resize', () => { if (window.innerWidth > 960) setOpen(false); });
 }
 
+/* ---------- 3D Logo interaction: clicking brand mark triggers celebration wave ---------- */
+const brandLink = $('.brand');
+if (brandLink) {
+  brandLink.addEventListener('click', (e) => {
+    window.dispatchEvent(new CustomEvent('nexora:celebrate'));
+  });
+}
+
 /* ---------- Fergana clock (UTC+5) ---------- */
 
 const clockFormat = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Tashkent', hour: '2-digit', minute: '2-digit', hour12: false });
@@ -143,11 +151,23 @@ if (pickCard) {
 
 /* ---------- Contact form ---------- */
 
+// What each field needs, said plainly next to the field.
+const FIELD_HELP = {
+  name: 'Please write your name.',
+  email: 'Please enter an email we can reply to, like you@company.com.',
+  message: 'Tell us a little more: at least 10 characters.',
+  company: 'Please shorten the company name.',
+  projectType: 'Please pick a project type from the list.',
+};
+
 const contactForm = $('#contact-form');
 if (contactForm) {
   const statusEl = $('#contact-status', contactForm);
   const submit = $('[type="submit"]', contactForm);
   const submitLabel = $('.submit-label', contactForm);
+  const thanks = $('#thanks');
+  const message = contactForm.elements.message;
+  const counter = $('[data-count]', contactForm);
   let sending = false;
 
   // Links elsewhere on the site pass ?type=…; preselect it if it is a real option.
@@ -168,26 +188,120 @@ if (contactForm) {
     setText(statusEl, key);
   };
 
-  contactForm.addEventListener('input', () => {
-    if (contactForm.dataset.state === 'error' || contactForm.dataset.state === 'success') setFormState('idle', '');
+  function markField(name, bad) {
+    const input = contactForm.elements[name];
+    if (!input) return;
+    const field = input.closest('.field');
+    let note = $('.field__error', field);
+    input.setAttribute('aria-invalid', String(bad));
+    field.classList.toggle('is-invalid', bad);
+    if (bad) {
+      if (!note) {
+        note = document.createElement('span');
+        note.className = 'field__error';
+        note.id = `${input.id}-error`;
+        field.appendChild(note);
+        input.setAttribute('aria-describedby', [input.getAttribute('aria-describedby'), note.id].filter(Boolean).join(' '));
+      }
+      setText(note, FIELD_HELP[name]);
+    } else if (note) {
+      const rest = (input.getAttribute('aria-describedby') || '').split(' ').filter((id) => id && id !== note.id).join(' ');
+      if (rest) input.setAttribute('aria-describedby', rest);
+      else input.removeAttribute('aria-describedby');
+      note.remove();
+    }
+  }
+
+  // Check the fields the same way the server does, so problems show before sending.
+  function invalidFields() {
+    const bad = [];
+    if (contactForm.elements.name.value.trim().length < 2) bad.push('name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(contactForm.elements.email.value.trim())) bad.push('email');
+    if (message.value.trim().length < 10) bad.push('message');
+    return bad;
+  }
+
+  function updateCounter() {
+    const n = message.value.trim().length;
+    counter.textContent = n >= 10 ? '✓' : `${n}/10`;
+    counter.classList.toggle('is-ok', n >= 10);
+  }
+  message.addEventListener('input', updateCounter);
+  updateCounter();
+
+  contactForm.addEventListener('input', (event) => {
+    const name = event.target.name;
+    if (name && event.target.getAttribute('aria-invalid') === 'true' && !invalidFields().includes(name)) markField(name, false);
+    if (contactForm.dataset.state === 'error') setFormState('idle', '');
+  });
+
+  // A one-off burst of lime, violet and silver pieces, with a few hearts.
+  function burst(host) {
+    host.textContent = '';
+    const colors = ['#c6ff3d', '#6a5cf0', '#d9dde3', '#0d0e10'];
+    for (let i = 0; i < 34; i += 1) {
+      const piece = document.createElement('i');
+      if (i % 7 === 0) {
+        piece.className = 'is-heart';
+        piece.textContent = '♥';
+      }
+      const angle = (i / 34) * Math.PI * 2 + Math.random() * 0.4;
+      const dist = 90 + Math.random() * 140;
+      piece.style.setProperty('--x', `${Math.cos(angle) * dist}px`);
+      piece.style.setProperty('--y', `${Math.sin(angle) * dist - 40}px`);
+      piece.style.setProperty('--r', `${Math.round(Math.random() * 540 - 270)}deg`);
+      piece.style.setProperty('--c', colors[i % colors.length]);
+      piece.style.setProperty('--d', `${Math.round(Math.random() * 120)}ms`);
+      host.appendChild(piece);
+    }
+  }
+
+  // codeSent: the confirmation email (with the portal access code) went out.
+  function showThanks(name, email, codeSent) {
+    $('.thanks__name', thanks).textContent = name.split(/\s+/)[0];
+    $('.thanks__email', thanks).textContent = email;
+    const portalNote = $('.thanks__portal', thanks);
+    if (portalNote) portalNote.hidden = !codeSent;
+    contactForm.hidden = true;
+    thanks.hidden = false;
+    thanks.classList.remove('is-playing');
+    void thanks.offsetWidth; // restart the animation
+    thanks.classList.add('is-playing');
+    burst($('.thanks__burst', thanks));
+    thanks.focus({ preventScroll: true });
+    thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // The 3D logo in the background joins in.
+    window.dispatchEvent(new CustomEvent('nexora:celebrate'));
+  }
+
+  $('#thanks-again')?.addEventListener('click', () => {
+    thanks.hidden = true;
+    contactForm.hidden = false;
+    setFormState('idle', '');
+    updateCounter();
+    contactForm.elements.name.focus();
   });
 
   contactForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (sending) return;
-    if (!contactForm.reportValidity()) {
-      setFormState('error', 'Please check the highlighted fields.');
+    const bad = invalidFields();
+    ['name', 'email', 'message'].forEach((name) => markField(name, bad.includes(name)));
+    if (bad.length) {
+      setFormState('error', 'Please fix the fields marked in red.');
+      contactForm.elements[bad[0]].focus();
       return;
     }
     const data = new FormData(contactForm);
     const payload = {
-      name: String(data.get('name') || ''),
-      email: String(data.get('email') || ''),
+      name: String(data.get('name') || '').trim(),
+      email: String(data.get('email') || '').trim(),
       company: String(data.get('company') || ''),
       projectType: String(data.get('projectType') || ''),
       budget: '',
       message: String(data.get('message') || ''),
-      website: String(data.get('website') || ''),
+      // The spam trap is named so browser autofill never fills it.
+      website: String(data.get('nx_trap') || ''),
       locale: getLang(),
     };
     sending = true;
@@ -202,12 +316,17 @@ if (contactForm) {
         body: JSON.stringify(payload),
       });
       if (response.status === 201) {
+        const result = await response.json().catch(() => ({}));
         contactForm.reset();
-        setFormState('success', 'Your brief is with us. A founder will reply personally.');
+        setFormState('success', '');
+        showThanks(payload.name, payload.email, result.confirmed === true);
       } else if (response.status === 429) {
         setFormState('error', 'Too many briefs from this address. Try again in a few minutes.');
       } else if (response.status === 400) {
-        setFormState('error', 'Please check the highlighted fields.');
+        const body = await response.json().catch(() => ({}));
+        const fields = Array.isArray(body.fields) && body.fields.length ? body.fields : ['message'];
+        fields.forEach((name) => markField(name, true));
+        setFormState('error', 'Please fix the fields marked in red.');
       } else {
         setFormState('error', 'Something went wrong. Write to support@nexorastudio.world instead.');
       }

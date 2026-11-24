@@ -16,6 +16,14 @@
         "dev/serve-v3.mjs"
       ],
       "port": 4190
+    },
+    {
+      "name": "lab",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "nexora-3d/dev/serve-lab.mjs"
+      ],
+      "port": 4200
     }
   ]
 }

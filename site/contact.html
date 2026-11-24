@@ -4,180 +4,190 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Contact — Nexora Studio</title>
-  <meta name="description" content="Start a project with Nexora Studio. Tell us what you're building, who it's for and when it needs to exist. A founder replies personally." />
-  <meta name="theme-color" content="#f3f4ef" />
+  <meta name="description" content="Start a project with Nexora Studio: send a brief or book a 20-minute call. We reply within one working day." />
+  <meta name="theme-color" content="#0c100f" />
   <link rel="canonical" href="https://nexorastudio.world/contact.html" />
-  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Nexora Studio" />
   <meta property="og:title" content="Contact — Nexora Studio" />
-  <meta property="og:description" content="Start a project with Nexora Studio. Tell us what you're building, who it's for and when it needs to exist. A founder replies personally." />
+  <meta property="og:description" content="Start a project with Nexora Studio: send a brief or book a 20-minute call. We reply within one working day." />
   <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
   <meta property="og:url" content="https://nexorastudio.world/contact.html" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Contact — Nexora Studio" />
-  <meta name="twitter:description" content="Start a project with Nexora Studio. Tell us what you're building, who it's for and when it needs to exist. A founder replies personally." />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&family=Unbounded:wght@400;500;600;700&display=swap" />
-  <link rel="stylesheet" href="./styles.css" />
-  <script type="module" src="./js/main.js"></script>
-  <script type="module" src="./js/scene.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Doto:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/v11.css" />
+  <link rel="stylesheet" href="./css/v11-pages.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="./js/vendor/gsap.min.js"></script>
+  <script defer src="./js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./js/vendor/lenis.min.js"></script>
+  <script defer src="./js/v11.js"></script>
+  <script defer src="./js/v11-widgets.js"></script>
+  <script type="module" src="./js/v11-forms.js"></script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
 </head>
-<body>
-  <canvas class="webgl" aria-hidden="true"></canvas>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="wrap site-header__inner">
-      <a class="brand" href="./index.html" aria-label="Nexora Studio — home">
-        <img src="./assets/logo-mark.png" alt="" width="26" height="26" />
-        <span>Nexora<span>Studio</span></span>
-      </a>
-      <nav class="site-nav" aria-label="Primary">
-          <a href="./index.html">Home</a>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html" aria-current="page">Contact</a>
-      </nav>
-      <div class="header-actions">
-        <div class="lang-switch" data-lang-group role="group" aria-label="Language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
-        </div>
-        <a class="btn" href="./contact.html">Start a project</a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span class="menu-toggle__label">Menu</span></button>
-      </div>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <div class="wrap">
-        <nav aria-label="Mobile">
-          <a href="./index.html">Home</a>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html" aria-current="page">Contact</a>
-        </nav>
-        <div class="mobile-menu__foot">
-          <div class="lang-row"><span class="label">Language</span><div class="lang-switch" data-lang-group role="group" aria-label="Language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><button type="button" data-lang="en" title="English">EN</button><button type="button" data-lang="ru" title="Русский">RU</button><button type="button" data-lang="uz" title="Oʻzbekcha">UZ</button>
-        </div></div>
-          <a class="btn" href="./contact.html">Start a project</a>
-        </div>
-      </div>
-    </div>
+<body data-page="Contact">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="bg" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="curtain" aria-hidden="true"><b></b></div>
+  <header class="top">
+    <a class="top__brand" href="./index.html" data-name="Nexora" aria-label="Nexora Studio — home"><img src="./assets/logo-mark.png" alt="" width="26" height="26" />NEXORA</a>
+    <nav class="top__nav" aria-label="Main"><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a></nav>
+    <a class="btn btn--accent" href="./contact.html" data-name="Contact">Let's talk</a>
+    <button class="top__menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </header>
-
+  <nav class="drawer" aria-label="Menu"><a href="./index.html" data-name="Home">Home</a><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a><a href="./contact.html" data-name="Contact">Contact</a></nav>
   <main id="main">
-    <section class="hero hero--page" style="padding-bottom:0">
+    <section class="hero contact">
       <div class="wrap">
-        <span class="label rise">Contact</span>
-        <h1 class="display rise" style="--d:80ms">Let's build something <em>that holds.</em></h1>
+        <span class="label hero__kicker">Contact</span>
+        <h1 class="hero__title">Let's<br />talk.</h1>
+        <div class="hero__foot">
+          <p class="serif">Tell us what you are building and when you need it. We reply within one working day.</p>
+          <div class="actions"><a class="btn btn--ink" href="#brief">Send a brief ↓</a><a class="btn btn--line" href="#call">Book a call ↓</a></div>
+        </div>
       </div>
+      <span class="hero__hint" aria-hidden="true">Scroll</span>
     </section>
 
-    <section class="section section--tight">
-      <div class="wrap contact">
-        <div class="contact__side">
-          <p class="lede">Tell us what you're building, who it's for and when it needs to exist. A founder replies personally.</p>
-          <div class="email-row">
-            <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
-            <button class="copy-btn" type="button" data-copy="support@nexorastudio.world">Copy</button>
-          </div>
-          <dl class="details">
-            <div><dt class="label">Basecamp</dt><dd>Fergana, Uzbekistan<span><span data-clock>FER 00:00</span> · UTC+5</span></dd></div>
-            <div><dt class="label">Response</dt><dd>Fast and personal<span>Directly from the founders</span></dd></div>
-            <div><dt class="label">Capacity</dt><dd>A few projects at a time<span>Booked selectively</span></dd></div>
-            <div><dt class="label">Send us</dt><dd>Scope · Timeline · Goals<span>A short brief is enough</span></dd></div>
+    <section class="sec" id="brief">
+      <div class="wrap brief">
+        <div class="brief__side" data-fade>
+          <span class="label">01 — Brief</span>
+          <h2 class="cond brief__title">Tell us about<br />your project.</h2>
+          <p class="muted">What you're building, who it's for and when it needs to exist. A short brief is enough.</p>
+          <dl class="facts facts--stack">
+            <div><dt>Response</dt><dd>Within one working day</dd></div>
+            <div><dt>Based in</dt><dd>Fergana, Uzbekistan · UTC+5</dd></div>
+            <div><dt>Languages</dt><dd>English, Russian, Uzbek</dd></div>
           </dl>
-          <p class="muted">Already a client? <a class="link" href="./portal.html">Open the client portal</a></p>
+          <div class="email-row"><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><button class="copy" type="button" data-copy="support@nexorastudio.world">Copy</button></div>
+          <p class="muted">Prefer to chat? <a class="link" href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram @nexorastudio_admin</a> · Already a client? <a class="link" href="./portal.html">Client portal</a></p>
         </div>
 
-        <form class="form" id="contact-form" novalidate>
-          <div class="form__head">
-            <h2 class="h3">Start a brief</h2>
-            <span class="mono muted">Fields marked * are required</span>
+        <div class="brief__main">
+          <form class="form" id="contact-form" novalidate data-fade>
+            <div class="form__grid">
+              <label class="field"><span>Name *</span><input type="text" name="name" required minlength="2" maxlength="120" autocomplete="name" placeholder="Your name" /></label>
+              <label class="field"><span>Email *</span><input type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="you@company.com" /></label>
+              <label class="field field--full"><span>Company</span><input type="text" name="company" maxlength="160" autocomplete="organization" placeholder="Where you work" /></label>
+              <fieldset class="field field--full"><legend>Project type</legend>
+                <div class="pills">
+                  <label><input type="radio" name="projectType" value="Mobile app" /><span>Mobile app</span></label>
+                  <label><input type="radio" name="projectType" value="Web platform" /><span>Web platform</span></label>
+                  <label><input type="radio" name="projectType" value="AI product" /><span>AI product</span></label>
+                  <label><input type="radio" name="projectType" value="Brand &amp; site" /><span>Brand &amp; site</span></label>
+                  <label><input type="radio" name="projectType" value="Something else" /><span>Something else</span></label>
+                </div>
+              </fieldset>
+              <label class="field field--full"><span>Project *</span><textarea name="message" rows="6" required minlength="10" maxlength="4000" placeholder="What are we building? Scope, users, timeline."></textarea><span class="field__hint"><span>A sentence or two is enough.</span> <b data-count>0/10</b></span></label>
+            </div>
+            <div class="form__hp" aria-hidden="true"><label>Leave empty <input type="text" name="nx_trap" tabindex="-1" autocomplete="new-password" data-lpignore="true" data-1p-ignore /></label></div>
+            <div class="form__foot">
+              <button class="btn btn--accent" type="submit"><span data-submit-label>Send brief</span> →</button>
+              <p class="form__note">No newsletters. Your details are used only to reply. <a class="link" href="./privacy.html" data-name="Privacy">Privacy</a></p>
+            </div>
+            <p class="form__status" data-status role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="thanks" id="thanks" tabindex="-1" hidden>
+            <span class="label">Brief received</span>
+            <h3 class="cond thanks__title">Thank you, <span data-thanks-name></span>.</h3>
+            <p class="serif">Your brief is with us. We will reply to <b data-thanks-email></b> within one working day.</p>
+            <p class="muted thanks__portal" hidden>We also emailed you an access code for the client portal, where you can follow your project.</p>
+            <div class="actions"><a class="btn btn--ghost" href="./portal.html">Open the client portal</a><button class="btn btn--ghost" type="button" data-thanks-again>Send another brief</button></div>
           </div>
-          <div class="form__grid">
-            <label class="field"><span>Name *</span><input type="text" id="f-name" name="name" required maxlength="120" autocomplete="name" placeholder="Your name" data-i18n-attr="placeholder:Your name" /></label>
-            <label class="field"><span>Email *</span><input type="email" id="f-email" name="email" required maxlength="254" autocomplete="email" inputmode="email" placeholder="you@company.com" data-i18n-attr="placeholder:you@company.com" /></label>
-            <label class="field"><span>Company</span><input type="text" id="f-company" name="company" maxlength="160" autocomplete="organization" placeholder="Where you work" data-i18n-attr="placeholder:Where you work" /></label>
-            <label class="field"><span>Project type</span>
-              <select id="f-type" name="projectType">
-                <option value="">Select one</option>
-                <option value="Web platform">Web platform</option>
-                <option value="Mobile app">Mobile app</option>
-                <option value="AI product">AI product</option>
-                <option value="Brand &amp; site">Brand &amp; site</option>
-                <option value="Something else">Something else</option>
-              </select>
-            </label>
-            <label class="field field--full"><span>Project *</span><textarea id="f-message" name="message" rows="6" required maxlength="4000" placeholder="What are we building? Scope, users, timeline." data-i18n-attr="placeholder:What are we building? Scope, users, timeline."></textarea></label>
-          </div>
-          <div class="form__hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
-          <div class="form__foot">
-            <button class="btn" type="submit"><span class="submit-label">Send brief</span></button>
-            <p class="form__note">A founder replies personally. No newsletter, ever.</p>
-          </div>
-          <p class="form__status" id="contact-status" role="status" aria-live="polite"></p>
-        </form>
+        </div>
       </div>
     </section>
 
-    <section class="section section--panel">
+    <section class="sec" id="call" style="padding-top:0">
       <div class="wrap">
-        <div class="section-head">
-          <span class="label">What happens next</span>
-          <h2 class="h2">How a project starts here.</h2>
-          <p class="lede">No sales layer and no discovery theatre. Three steps to know whether we are the right studio for the work.</p>
+        <span class="label">02 — Intro call</span>
+        <div class="split-head">
+          <h2 class="cond" style="font-size:clamp(56px,8vw,130px)" data-split>Book a<br />20-minute call.</h2>
+          <p class="serif muted">Every day from 19:00 to 24:00 Fergana time (UTC+5). Pick a time; we send the call link by email.</p>
         </div>
-        <ol class="steps" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-          <li class="step"><h3 class="h3">You write</h3><p>A short brief is enough: what you are building, who it serves and when it needs to exist.</p></li>
-          <li class="step"><h3 class="h3">We reply</h3><p>Directly from a founder. We will tell you what we understood, what is unclear, and whether the fit is right.</p></li>
-          <li class="step"><h3 class="h3">A route</h3><p>A 30-minute call and a scoped plan: architecture, stages, timeline and cost — before any engagement begins.</p></li>
-        </ol>
-        <p style="margin-top:40px"><a class="link" href="./work.html">See what we have shipped</a></p>
+        <div class="booking" data-booking>
+          <div class="booking__pick">
+            <span class="booking__step">1 · Day</span>
+            <div class="booking__days" data-booking-days></div>
+            <span class="booking__step">2 · Time <small>Fergana time</small></span>
+            <div class="booking__slots" data-booking-slots><p class="muted">Loading free times…</p></div>
+          </div>
+          <form class="booking__form form" data-booking-form hidden novalidate>
+            <span class="booking__step">3 · Your details</span>
+            <p class="booking__picked" data-booking-picked></p>
+            <label class="field"><span>Name *</span><input type="text" name="name" required minlength="2" maxlength="120" autocomplete="name" /></label>
+            <label class="field"><span>Email *</span><input type="email" name="email" required maxlength="254" autocomplete="email" inputmode="email" /></label>
+            <label class="field"><span>What would you like to discuss?</span><textarea name="topic" rows="3" maxlength="1000"></textarea></label>
+            <div class="form__hp" aria-hidden="true"><label>Leave empty <input type="text" name="nx_trap" tabindex="-1" autocomplete="new-password" data-lpignore="true" data-1p-ignore /></label></div>
+            <button class="btn btn--accent" type="submit">Book this call →</button>
+          </form>
+          <p class="form__status" data-booking-status role="status" aria-live="polite"></p>
+          <div class="booking__done" data-booking-done tabindex="-1" hidden>
+            <h3 class="cond">Your call is booked.</h3>
+            <p><b data-booking-when></b> Fergana time. We sent the details to <b data-booking-email></b>.</p>
+          </div>
+          <noscript><p>Email us at support@nexorastudio.world and we will find a time.</p></noscript>
+        </div>
       </div>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <p>Three founders. Every line of code.</p>
-        </div>
-        <nav aria-label="Footer">
-          <span class="label">Navigate</span>
-          <a href="./studio.html">Studio</a>
-          <a href="./work.html">Work</a>
-          <a href="./team.html">Team</a>
-          <a href="./journal.html">Journal</a>
-          <a href="./contact.html">Contact</a>
-          <a href="./portal.html">Client portal</a>
-        </nav>
-        <div>
-          <span class="label">Contact</span>
-          <a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a>
-          <a href="mailto:support@nexorastudio.world?subject=Application%20%E2%80%94%20Nexora%20Studio">Careers</a>
-          <a href="./contact.html">Start a project</a>
-        </div>
-        <div>
-          <span class="label">Studio</span>
-          <span class="muted">Fergana, Uzbekistan</span>
-          <span class="muted num"><span data-clock>FER 00:00</span> · UTC+5</span>
-          <span class="status">Open for new projects</span>
-        </div>
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <span class="label">03 — Questions we often get</span>
+        <div class="faq" data-fade><details><summary>How much does a project cost?</summary><p>It depends on the scope. After the first call we send a written estimate with a fixed scope and timeline, so you know the cost before work starts.</p></details><details><summary>How long does it take?</summary><p>Most first versions take from several weeks to a few months, depending on the features. You see working builds every week, so there are no surprises at the end.</p></details><details><summary>Who will actually work on my product?</summary><p>Our own team: the same designers and engineers you meet on the first call. We do not outsource the work.</p></details><details><summary>Can you take over an existing product?</summary><p>Yes. We start with a short review of the code and design, then tell you honestly what to keep, what to fix and what to rebuild.</p></details><details><summary>Do you work with clients outside Uzbekistan?</summary><p>Yes. We are based in Fergana (UTC+5) and ship worldwide. We work in English, Russian and Uzbek.</p></details></div>
+        <p class="muted" style="margin-top:32px">Want a rough timeline first? <a class="link" href="./estimate.html" data-name="Estimate">Estimate it in four questions →</a></p>
       </div>
-      <div class="footer-word" aria-hidden="true" data-no-i18n>Nexora</div>
-      <div class="footer-bottom mono">
-        <span>© <span data-year>2026</span> Nexora Studio</span>
-        <span>Engineered in Fergana · EN / RU / UZ</span>
+    </section>
+    <a class="next" href="./index.html" data-name="Home">
+      <span class="next__fill" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="next__label">Back to the start</span>
+        <span class="next__title"><span>Home</span><span aria-hidden="true">→</span></span>
       </div>
+    </a>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
+      <nav aria-label="Footer"><a href="./journal.html" data-name="Journal">Journal</a><a href="./estimate.html" data-name="Estimate">Estimate a timeline</a><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><a href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a><a href="./privacy.html" data-name="Privacy">Privacy & cookies</a></nav>
     </div>
   </footer>
+  <aside class="cookie" data-cookie hidden aria-label="Cookies">
+    <p><b>Cookies & storage.</b> We use only what the site needs to work. With your OK, the chat assistant also remembers your conversation on this device. No ads, no tracking.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--accent" type="button" data-consent="all">Accept</button>
+      <button class="btn btn--ghost" type="button" data-consent="essential">Only essential</button>
+      <a class="link" href="./privacy.html" data-name="Privacy">Details</a>
+    </div>
+  </aside>
+
+  <div class="chat" data-chat>
+    <button class="chat__launch" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+      <span class="chat__dot" aria-hidden="true"></span><span class="chat__launch-text">Ask Nexora</span>
+      <svg class="chat__close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Chat with the Nexora assistant" hidden data-lenis-prevent>
+      <header class="chat__head">
+        <span class="chat__avatar" aria-hidden="true">N</span>
+        <div><b>Nexora assistant</b><small data-chat-status>Answers about our services, process and products</small></div>
+      </header>
+      <div class="chat__log" data-chat-log aria-live="polite"></div>
+      <div class="chat__quick" data-chat-quick></div>
+      <form class="chat__form" data-chat-form>
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="1" maxlength="800" placeholder="Ask about services, prices, timelines…" data-chat-input></textarea>
+        <button class="chat__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="chat__note">AI assistant — it can make mistakes. For anything binding, <a href="./contact.html" data-name="Contact">write to the team</a>.</p>
+    </section>
+  </div>
 </body>
 </html>

@@ -2,10 +2,66 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "",
   "outputDirectory": "site",
+  "redirects": [
+    {
+      "source": "/studio.html",
+      "destination": "/team.html",
+      "permanent": true
+    },
+    {
+      "source": "/about.html",
+      "destination": "/team.html",
+      "permanent": true
+    },
+    {
+      "source": "/classic.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/world.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/v10.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/v11.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/v11-services.html",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/v11-work.html",
+      "destination": "/work.html",
+      "permanent": true
+    },
+    {
+      "source": "/v11-team.html",
+      "destination": "/team.html",
+      "permanent": true
+    },
+    {
+      "source": "/v11-contact.html",
+      "destination": "/contact.html",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/functions/v1/app/api/contact",
       "destination": "/api/contact"
+    },
+    {
+      "source": "/functions/v1/app/api/:route*",
+      "destination": "https://jsjxklslickhahyuajcc.supabase.co/functions/v1/app/api/:route*"
     }
   ],
   "headers": [

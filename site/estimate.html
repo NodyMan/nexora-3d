@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Estimate a timeline — Nexora Studio</title>
+  <meta name="description" content="Answer four questions about your app, web platform or AI feature and get a rough timeline in weeks." />
+  <meta name="theme-color" content="#0c100f" />
+  <link rel="canonical" href="https://nexorastudio.world/estimate.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nexora Studio" />
+  <meta property="og:title" content="Estimate a timeline — Nexora Studio" />
+  <meta property="og:description" content="Answer four questions about your app, web platform or AI feature and get a rough timeline in weeks." />
+  <meta property="og:image" content="https://nexorastudio.world/assets/og.png" />
+  <meta property="og:url" content="https://nexorastudio.world/estimate.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="./assets/logo-chip.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./assets/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Doto:wght@700;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Onest:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/v11.css" />
+  <link rel="stylesheet" href="./css/v11-pages.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script defer src="./js/vendor/gsap.min.js"></script>
+  <script defer src="./js/vendor/ScrollTrigger.min.js"></script>
+  <script defer src="./js/vendor/lenis.min.js"></script>
+  <script defer src="./js/v11.js"></script>
+  <script defer src="./js/v11-widgets.js"></script>
+  <script type="module" src="./js/v11-forms.js"></script>
+  <script type="speculationrules">{"prefetch":[{"where":{"href_matches":"/*"},"eagerness":"moderate"}]}</script>
+</head>
+<body data-page="Estimate">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas class="bg" aria-hidden="true"></canvas>
+  <div class="bg-glow" aria-hidden="true"></div>
+  <div class="curtain" aria-hidden="true"><b></b></div>
+  <header class="top">
+    <a class="top__brand" href="./index.html" data-name="Nexora" aria-label="Nexora Studio — home"><img src="./assets/logo-mark.png" alt="" width="26" height="26" />NEXORA</a>
+    <nav class="top__nav" aria-label="Main"><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a></nav>
+    <a class="btn btn--accent" href="./contact.html" data-name="Contact">Let's talk</a>
+    <button class="top__menu" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <nav class="drawer" aria-label="Menu"><a href="./index.html" data-name="Home">Home</a><a href="./services.html" data-name="Services">Services</a><a href="./work.html" data-name="Work">Work</a><a href="./team.html" data-name="Team">Team</a><a href="./journal.html" data-name="Journal">Journal</a><a href="./contact.html" data-name="Contact">Contact</a></nav>
+  <main id="main">
+    <section class="hero ">
+      <div class="wrap">
+        <span class="label hero__kicker">Estimate</span>
+        <h1 class="hero__title">How long<br />will it <em>take?</em></h1>
+        <div class="hero__foot">
+          <p class="serif">Answer four questions and get a rough timeline. We confirm scope, timeline and cost after a short call.</p>
+          
+        </div>
+      </div>
+      <span class="hero__hint" aria-hidden="true">Scroll</span>
+    </section>
+
+    <section class="sec" style="padding-top:0">
+      <div class="wrap">
+        <form class="estimator" data-estimator novalidate>
+          <div class="estimator__steps">
+            <fieldset class="est-step" data-fade>
+              <legend><span>01</span> What are you building?</legend>
+              <div class="opts opts--2"><label class="opt"><input type="radio" name="type" value="mobile" /><span class="opt__box"><b data-label>Mobile app</b><small>iOS and Android</small></span></label><label class="opt"><input type="radio" name="type" value="web" /><span class="opt__box"><b data-label>Web platform</b><small>A site with accounts, a dashboard or a store</small></span></label><label class="opt"><input type="radio" name="type" value="ai" /><span class="opt__box"><b data-label>AI feature</b><small>An assistant, search or automation in an existing product</small></span></label><label class="opt"><input type="radio" name="type" value="design" /><span class="opt__box"><b data-label>Design only</b><small>Product design and a clickable prototype</small></span></label></div>
+            </fieldset>
+            <fieldset class="est-step" data-fade>
+              <legend><span>02</span> Where should it work?</legend>
+              <div class="opts opts--4"><label class="opt"><input type="checkbox" name="platform" value="ios" /><span class="opt__box"><b data-label>iOS</b></span></label><label class="opt"><input type="checkbox" name="platform" value="android" /><span class="opt__box"><b data-label>Android</b></span></label><label class="opt"><input type="checkbox" name="platform" value="web" /><span class="opt__box"><b data-label>Web</b></span></label><label class="opt"><input type="checkbox" name="platform" value="admin" /><span class="opt__box"><b data-label>Admin panel</b></span></label></div>
+            </fieldset>
+            <fieldset class="est-step" data-fade>
+              <legend><span>03</span> What should it do?</legend>
+              <div class="opts opts--4"><label class="opt"><input type="checkbox" name="feature" value="auth" /><span class="opt__box"><b data-label>Sign-in and profiles</b></span></label><label class="opt"><input type="checkbox" name="feature" value="payments" /><span class="opt__box"><b data-label>Payments</b></span></label><label class="opt"><input type="checkbox" name="feature" value="ai" /><span class="opt__box"><b data-label>AI assistant or chat</b></span></label><label class="opt"><input type="checkbox" name="feature" value="offline" /><span class="opt__box"><b data-label>Works offline</b></span></label><label class="opt"><input type="checkbox" name="feature" value="languages" /><span class="opt__box"><b data-label>Several languages</b></span></label><label class="opt"><input type="checkbox" name="feature" value="notifications" /><span class="opt__box"><b data-label>Notifications</b></span></label><label class="opt"><input type="checkbox" name="feature" value="integrations" /><span class="opt__box"><b data-label>Integrations</b></span></label><label class="opt"><input type="checkbox" name="feature" value="maps" /><span class="opt__box"><b data-label>Maps and location</b></span></label></div>
+            </fieldset>
+            <fieldset class="est-step" data-fade>
+              <legend><span>04</span> Where are you now?</legend>
+              <div class="opts opts--3"><label class="opt"><input type="radio" name="stage" value="idea" /><span class="opt__box"><b data-label>Just an idea</b></span></label><label class="opt"><input type="radio" name="stage" value="designs" /><span class="opt__box"><b data-label>Designs are ready</b></span></label><label class="opt"><input type="radio" name="stage" value="existing" /><span class="opt__box"><b data-label>Improving an existing product</b></span></label></div>
+            </fieldset>
+          </div>
+          <aside class="est-result" aria-live="polite">
+            <span class="label">Rough timeline</span>
+            <p class="est-result__empty">Pick what you are building to see a timeline.</p>
+            <p class="est-result__total"><b data-est-total>—</b> <span>weeks</span></p>
+            <ul class="est-result__parts">
+              <li><span>Discovery and design</span><b data-est-design></b></li>
+              <li><span>Build</span><b data-est-build></b></li>
+              <li><span>Testing and launch</span><b data-est-launch></b></li>
+            </ul>
+            <p class="est-result__note">A rough estimate based on typical projects of this size. We confirm the scope, timeline and cost after a 20-minute call.</p>
+            <div class="actions">
+              <button class="btn btn--accent" type="submit">Send as a brief →</button>
+              <a class="btn btn--ghost" href="./contact.html#call" data-name="Contact">Book a call</a>
+            </div>
+          </aside>
+        </form>
+      </div>
+    </section>
+    <a class="next" href="./contact.html" data-name="Contact">
+      <span class="next__fill" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="next__label">Next page</span>
+        <span class="next__title"><span>Contact</span><span aria-hidden="true">→</span></span>
+      </div>
+    </a>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
+      <nav aria-label="Footer"><a href="./journal.html" data-name="Journal">Journal</a><a href="./estimate.html" data-name="Estimate">Estimate a timeline</a><a href="mailto:support@nexorastudio.world">support@nexorastudio.world</a><a href="https://t.me/nexorastudio_admin" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a><a href="./privacy.html" data-name="Privacy">Privacy & cookies</a></nav>
+    </div>
+  </footer>
+  <aside class="cookie" data-cookie hidden aria-label="Cookies">
+    <p><b>Cookies & storage.</b> We use only what the site needs to work. With your OK, the chat assistant also remembers your conversation on this device. No ads, no tracking.</p>
+    <div class="cookie__actions">
+      <button class="btn btn--accent" type="button" data-consent="all">Accept</button>
+      <button class="btn btn--ghost" type="button" data-consent="essential">Only essential</button>
+      <a class="link" href="./privacy.html" data-name="Privacy">Details</a>
+    </div>
+  </aside>
+
+  <div class="chat" data-chat>
+    <button class="chat__launch" type="button" aria-expanded="false" aria-controls="chat-panel" data-chat-toggle>
+      <span class="chat__dot" aria-hidden="true"></span><span class="chat__launch-text">Ask Nexora</span>
+      <svg class="chat__close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <section class="chat__panel" id="chat-panel" role="dialog" aria-label="Chat with the Nexora assistant" hidden data-lenis-prevent>
+      <header class="chat__head">
+        <span class="chat__avatar" aria-hidden="true">N</span>
+        <div><b>Nexora assistant</b><small data-chat-status>Answers about our services, process and products</small></div>
+      </header>
+      <div class="chat__log" data-chat-log aria-live="polite"></div>
+      <div class="chat__quick" data-chat-quick></div>
+      <form class="chat__form" data-chat-form>
+        <label class="sr-only" for="chat-input">Your message</label>
+        <textarea id="chat-input" rows="1" maxlength="800" placeholder="Ask about services, prices, timelines…" data-chat-input></textarea>
+        <button class="chat__send" type="submit" aria-label="Send">→</button>
+      </form>
+      <p class="chat__note">AI assistant — it can make mistakes. For anything binding, <a href="./contact.html" data-name="Contact">write to the team</a>.</p>
+    </section>
+  </div>
+</body>
+</html>

@@ -12,3 +12,9 @@ functions
 backup-pre-v3
 site-v3
 src-v3
+node_modules
+lab
+backup-pre-lab
+backup-pre-v5
+site-v4
+src-v4

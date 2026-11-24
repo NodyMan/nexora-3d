@@ -113,17 +113,72 @@ function setLoginStatus(message) {
   loginStatus.textContent = message || '';
 }
 
-function showLogin() {
+const setupView = document.getElementById('admin-setup');
+const setupForm = document.getElementById('setup-form');
+const setupStatus = document.getElementById('setup-status');
+
+// Shows the sign-in form, or the one-time "create your login" form while no login exists yet.
+async function showLogin() {
   root.dataset.view = 'login';
   appView.hidden = true;
   notice.hidden = true;
-  loginView.hidden = false;
-  window.setTimeout(() => loginForm?.code?.focus({ preventScroll: true }), 60);
+  let needsSetup = false;
+  try {
+    const { status, data: payload } = await api('/setup');
+    needsSetup = status === 200 && payload?.needed === true;
+  } catch (error) { /* fall back to sign-in */ }
+  loginView.hidden = needsSetup;
+  if (setupView) setupView.hidden = !needsSetup;
+  const form = needsSetup ? setupForm : loginForm;
+  window.setTimeout(() => form?.elements[0]?.focus({ preventScroll: true }), 60);
 }
+
+setupForm?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const say = (message) => { setupStatus.textContent = message; };
+  if (!setupForm.reportValidity()) { say('Fill in every field.'); return; }
+  if (setupForm.password.value !== setupForm.repeat.value) { say('The two passwords differ.'); return; }
+  const submit = document.getElementById('setup-submit');
+  const label = document.getElementById('setup-submit-label');
+  submit.disabled = true;
+  label.textContent = 'Creating…';
+  say('');
+  try {
+    const { status, data: payload } = await api('/setup', {
+      method: 'POST',
+      body: JSON.stringify({ code: setupForm.code.value, username: setupForm.username.value, password: setupForm.password.value }),
+    });
+    if (status === 200) {
+      setupForm.reset();
+      if (setupView) setupView.hidden = true;
+      await loadOverview();
+      showToast('Console login created');
+    } else if (status === 400 && payload?.error === 'weak_password') {
+      say(`The password needs ${payload.problems.join(', ')}.`);
+    } else if (status === 400) {
+      say('Usernames use 3–32 letters, digits, dots, dashes or underscores.');
+    } else if (status === 401) {
+      say('That setup code is wrong, expired or already used.');
+    } else if (status === 409) {
+      say('A console login already exists. Sign in instead.');
+      window.setTimeout(showLogin, 1200);
+    } else if (status === 429) {
+      say('Too many attempts. Wait 15 minutes and try again.');
+    } else {
+      say('Could not create the login. Try again.');
+    }
+  } catch (error) {
+    say('Could not create the login. Try again.');
+  } finally {
+    submit.disabled = false;
+    label.textContent = 'Create login';
+  }
+});
 
 function showApp() {
   root.dataset.view = 'app';
   loginView.hidden = true;
+  if (setupView) setupView.hidden = true;
   notice.hidden = true;
   appView.hidden = false;
 }
@@ -475,7 +530,7 @@ document.addEventListener('change', (event) => {
 
 loginForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
-  if (!loginForm.reportValidity()) { setLoginStatus('Enter the console code.'); return; }
+  if (!loginForm.reportValidity()) { setLoginStatus('Enter your username and password.'); return; }
   const submit = document.getElementById('admin-submit');
   const label = document.getElementById('admin-submit-label');
   submit.disabled = true;
@@ -484,15 +539,18 @@ loginForm?.addEventListener('submit', async (event) => {
   try {
     const { status, data: payload } = await api('/login', {
       method: 'POST',
-      body: JSON.stringify({ code: loginForm.code.value }),
+      body: JSON.stringify({ username: loginForm.username.value, password: loginForm.password.value }),
     });
     if (status === 200) {
       loginForm.reset();
       await loadOverview();
     } else if (status === 401) {
-      setLoginStatus('Incorrect console code.');
+      loginForm.password.value = '';
+      setLoginStatus('Incorrect username or password.');
+    } else if (status === 429) {
+      setLoginStatus('Too many attempts. Wait 15 minutes and try again.');
     } else if (status === 503) {
-      setLoginStatus('The console code is not configured yet. Add it in Site Settings.');
+      setLoginStatus('The console login is not set up yet. Run dev/set-admin-login.mjs.');
     } else {
       setLoginStatus('Could not open the console. Try again.');
     }

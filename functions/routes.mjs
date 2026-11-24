@@ -6,12 +6,16 @@
 // Portal authorization is an opaque session cookie whose hash is stored in
 // Postgres; storage paths are always derived on the server.
 
+import { confirmationEmail } from '../api/_confirmation-email.mjs';
+
 const CLIENT_COOKIE = 'nx_portal';
 const ADMIN_COOKIE = 'nx_admin';
 const CLIENT_SESSION_DAYS = 30;
 const ADMIN_SESSION_HOURS = 12;
 const MAX_BODY = 24 * 1024;
 const MAX_UPLOAD = 25 * 1024 * 1024;
+const MAX_LOGIN_FAILURES = 8;
+const LOGIN_WINDOW_MINUTES = 15;
 
 const PROJECT_STATUSES = ['discovery', 'building', 'review', 'live', 'paused'];
 const INVOICE_STATUSES = ['draft', 'sent', 'paid', 'overdue'];
@@ -40,6 +44,37 @@ const text = (value, max, { required = true, min = 0 } = {}) => {
 
 const isEmail = (value) => typeof value === 'string' && value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
 const isUuid = (value) => typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+// Intro calls: every day 19:00–24:00 Fergana time (UTC+5, no daylight saving),
+// 20-minute slots, bookable from 2 hours ahead up to 14 days out.
+const CALL_OFFSET_MIN = 5 * 60;
+const CALL_FIRST_MIN = 19 * 60;
+const CALL_LAST_MIN = 24 * 60;
+const CALL_SLOT_MIN = 20;
+const CALL_DAYS = 14;
+const CALL_LEAD_MS = 2 * 3600000;
+
+// Slot starts (UTC ISO strings) for one Fergana calendar date 'YYYY-MM-DD'.
+export function callSlotsFor(date) {
+  const [y, m, d] = date.split('-').map(Number);
+  const midnightUtc = Date.UTC(y, m - 1, d) - CALL_OFFSET_MIN * 60000;
+  const out = [];
+  for (let minute = CALL_FIRST_MIN; minute + CALL_SLOT_MIN <= CALL_LAST_MIN; minute += CALL_SLOT_MIN) {
+    out.push(new Date(midnightUtc + minute * 60000).toISOString());
+  }
+  return out;
+}
+
+// The next CALL_DAYS Fergana dates, starting today.
+export function callDates(nowMs = Date.now()) {
+  const local = new Date(nowMs + CALL_OFFSET_MIN * 60000);
+  const out = [];
+  for (let i = 0; i < CALL_DAYS; i += 1) {
+    const day = new Date(Date.UTC(local.getUTCFullYear(), local.getUTCMonth(), local.getUTCDate() + i));
+    out.push(day.toISOString().slice(0, 10));
+  }
+  return out;
+}
+
 const isDate = (value) => value === '' || (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value));
 
 export function application({ db, storage, BackendError, env = () => undefined, fetchImpl = fetch }) {
@@ -162,10 +197,9 @@ export function application({ db, storage, BackendError, env = () => undefined, 
     return client;
   }
 
-  async function notifyInquiry(inquiry) {
+  async function sendEmail(message, label) {
     const key = env('RESEND_API_KEY');
-    const to = env('CONTACT_TO_EMAIL');
-    if (!key || !to) return false;
+    if (!key) return false;
     const from = env('CONTACT_FROM_EMAIL') || 'Nexora Studio <onboarding@resend.dev>';
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 8000);
@@ -173,30 +207,90 @@ export function application({ db, storage, BackendError, env = () => undefined, 
       const response = await fetchImpl('https://api.resend.com/emails', {
         method: 'POST',
         headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
-        body: JSON.stringify({
-          from,
-          to: [to],
-          reply_to: inquiry.email,
-          subject: `Project inquiry — ${inquiry.company || inquiry.name}`,
-          text: [
-            `Name: ${inquiry.name}`,
-            `Email: ${inquiry.email}`,
-            `Company: ${inquiry.company || '—'}`,
-            `Project: ${inquiry.project_type || '—'}`,
-            `Budget: ${inquiry.budget || '—'}`,
-            `Locale: ${inquiry.locale || 'en'}`,
-            '',
-            inquiry.message,
-          ].join('\n'),
-        }),
+        body: JSON.stringify({ from, ...message }),
         signal: controller.signal,
       });
+      if (!response.ok) {
+        // Resend says why it refused (bad key, unverified sender, recipient not allowed); keep it in the logs.
+        const reason = await response.json().catch(() => ({}));
+        console.error(`${label}: resend refused`, response.status, reason.name || '', reason.message || '');
+      }
       return response.ok;
     } catch {
+      console.error(`${label}: resend unreachable`);
       return false;
     } finally {
       clearTimeout(timer);
     }
+  }
+
+  // The brief, to the studio inbox. Replying goes straight to the client.
+  async function notifyInquiry(inquiry) {
+    const to = env('CONTACT_TO_EMAIL');
+    if (!to) return false;
+    return sendEmail({
+      to: [to],
+      reply_to: inquiry.email,
+      subject: `Project inquiry — ${inquiry.company || inquiry.name}`,
+      text: [
+        `Name: ${inquiry.name}`,
+        `Email: ${inquiry.email}`,
+        `Company: ${inquiry.company || '—'}`,
+        `Project: ${inquiry.project_type || '—'}`,
+        `Budget: ${inquiry.budget || '—'}`,
+        `Locale: ${inquiry.locale || 'en'}`,
+        '',
+        inquiry.message,
+      ].join('\n'),
+    }, 'contact');
+  }
+
+  // The sender of a brief gets a portal login: their client record (created on the
+  // first brief) and a fresh access code. The code only ever travels by email, so
+  // typing someone else's address into the form gives nothing away.
+  async function portalAccessFor(inquiry) {
+    let client = rows(
+      await db.from('portal_clients').select('id').eq('email', inquiry.email).limit(1)
+    )[0];
+    if (!client) {
+      client = { id: crypto.randomUUID(), name: inquiry.name, company: inquiry.company || inquiry.name, email: inquiry.email, created_at: iso(now()) };
+      try {
+        rows(await db.from('portal_clients').insert(client).select('id'));
+      } catch (error) {
+        // Two briefs at once from a new address: the other request created the client.
+        if (!(error instanceof BackendError)) throw error;
+        client = rows(await db.from('portal_clients').select('id').eq('email', inquiry.email).limit(1))[0];
+        if (!client) throw error;
+      }
+    }
+    const code = generateCode();
+    const expires = new Date(Date.now() + 30 * 86400000);
+    rows(
+      await db.from('portal_access_codes').insert({
+        id: crypto.randomUUID(),
+        client_id: client.id,
+        code_hash: await digest(`portal:${code.replace(/-/g, '')}`),
+        expires_at: iso(expires),
+        used_at: null,
+        created_at: iso(now()),
+      })
+    );
+    return { code, expiresAt: iso(expires) };
+  }
+
+  // "We have your brief", to the client, with their portal code. Replying reaches the studio inbox.
+  async function confirmInquiry(inquiry) {
+    if (!env('RESEND_API_KEY')) return false;
+    const studio = env('CONTACT_TO_EMAIL');
+    let portal = null;
+    try {
+      portal = await portalAccessFor(inquiry);
+    } catch (error) {
+      // The brief still gets its confirmation; the studio can issue a code from the console.
+      console.error('confirmation: could not issue a portal code', error?.code || error?.message || error);
+    }
+    const { subject, text, html } = confirmationEmail(inquiry, portal);
+    return sendEmail({ to: [inquiry.email], ...(studio ? { reply_to: studio } : {}), subject, text, html }, 'confirmation');
   }
 
   async function verifyUploadedObject(response) {
@@ -230,6 +324,80 @@ export function application({ db, storage, BackendError, env = () => undefined, 
     return { size, contentType: type || 'application/octet-stream' };
   }
 
+  // Constant-time comparison of two equal-length hex digests.
+  function sameText(a, b) {
+    let diff = a.length ^ b.length;
+    for (let index = 0; index < Math.min(a.length, b.length); index += 1) diff |= a.charCodeAt(index) ^ b.charCodeAt(index);
+    return diff === 0;
+  }
+
+  const b64url = (bytes) => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const fromB64url = (text) => Uint8Array.from(atob(text.replace(/-/g, '+').replace(/_/g, '/')), (c) => c.charCodeAt(0));
+
+  // Stored format: pbkdf2$<iterations>$<salt>$<hash>, salt and hash base64url.
+  async function verifyPassword(password, stored) {
+    const [scheme, rounds, salt, hash] = String(stored).split('$');
+    const iterations = Number(rounds);
+    if (scheme !== 'pbkdf2' || !Number.isInteger(iterations) || iterations < 100000 || !salt || !hash) return false;
+    const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: fromB64url(salt), iterations }, key, 256);
+    return sameText(b64url(new Uint8Array(bits)), hash);
+  }
+
+  // A valid-looking hash of a random password, used when the username is unknown.
+  const DUMMY_HASH = 'pbkdf2$210000$AAAAAAAAAAAAAAAAAAAAAA$AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+
+  async function hashPassword(password) {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt, iterations: 210000 }, key, 256);
+    return ['pbkdf2', '210000', b64url(salt), b64url(new Uint8Array(bits))].join('$');
+  }
+
+  // What a console password needs; the console shows these to the user.
+  function passwordProblems(password, username) {
+    const problems = [];
+    if (password.length < 12) problems.push('at least 12 characters');
+    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) problems.push('both lowercase and uppercase letters');
+    if (!/[0-9]/.test(password)) problems.push('at least one digit');
+    if (!/[^A-Za-z0-9]/.test(password)) problems.push('at least one symbol, like ! # $ %');
+    if (/(.)\1\1\1/.test(password) || /(?:0123|1234|2345|3456|4567|5678|6789|abcd|qwer|password)/i.test(password)) {
+      problems.push('no simple sequences like 1234, abcd, qwerty or "password"');
+    }
+    if (username && password.toLowerCase().includes(username)) problems.push('not containing the username');
+    return problems;
+  }
+
+  // Pause guessing: too many failed sign-ins from one address in 15 minutes.
+  async function guardLogin(request) {
+    const ip = (request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown').split(',')[0].trim();
+    const ipHash = await digest(`ip:${ip}`);
+    const since = iso(new Date(Date.now() - LOGIN_WINDOW_MINUTES * 60000));
+    const failures = rows(
+      await db.from('admin_login_failures').select('id').eq('ip_hash', ipHash).gte('created_at', since).limit(MAX_LOGIN_FAILURES)
+    );
+    if (failures.length >= MAX_LOGIN_FAILURES) fail('rate_limited', 429);
+    return ipHash;
+  }
+
+  async function noteFailure(ipHash) {
+    await db.from('admin_login_failures').insert({ id: crypto.randomUUID(), ip_hash: ipHash, created_at: iso(now()) });
+  }
+
+  async function startAdminSession(request) {
+    const token = randomToken();
+    rows(
+      await db.from('portal_sessions').insert({
+        token_hash: await digest(token),
+        client_id: null,
+        role: 'admin',
+        expires_at: iso(new Date(Date.now() + ADMIN_SESSION_HOURS * 3600000)),
+        created_at: iso(now()),
+      })
+    );
+    return json({ ok: true }, 200, { 'set-cookie': setCookie(request, ADMIN_COOKIE, token, ADMIN_SESSION_HOURS * 3600) });
+  }
+
   function generateCode() {
     const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     const bytes = crypto.getRandomValues(new Uint8Array(8));
@@ -247,7 +415,11 @@ export function application({ db, storage, BackendError, env = () => undefined, 
     const path = match[1] || '/';
     const method = request.method;
 
-    if (path === '/api/health' && method === 'GET') return json({ ok: true });
+    // Says which mail settings are present (never their values), to diagnose missing secrets.
+    if (path === '/api/health' && method === 'GET') {
+      const mail = Object.fromEntries(['RESEND_API_KEY', 'CONTACT_TO_EMAIL', 'CONTACT_FROM_EMAIL'].map((name) => [name, Boolean(env(name))]));
+      return json({ ok: true, mail });
+    }
 
     /* Contact --------------------------------------------------------------- */
     if (path === '/api/contact' && method === 'POST') {
@@ -261,7 +433,11 @@ export function application({ db, storage, BackendError, env = () => undefined, 
       const message = text(data.message, 4000, { min: 10 });
       const locale = ['en', 'ru', 'uz'].includes(data.locale) ? data.locale : 'en';
       if (!name || !email || company === null || projectType === null || budget === null || !message) {
-        fail('invalid_input', 400);
+        // Name the fields so the form can point at them.
+        const fields = Object.entries({ name, email, company: company !== null, projectType: projectType !== null, message })
+          .filter(([, ok]) => !ok)
+          .map(([field]) => field);
+        return json({ error: 'invalid_input', fields }, 400);
       }
       const recent = rows(
         await db
@@ -286,8 +462,85 @@ export function application({ db, storage, BackendError, env = () => undefined, 
         created_at: iso(now()),
       };
       rows(await db.from('inquiries').insert(inquiry).select('id'));
-      const notified = await notifyInquiry(inquiry);
-      return json({ ok: true, notified }, 201);
+      // At most three confirmation emails a day to one address, so the form cannot be used to flood an inbox.
+      const today = recent.filter((row) => Date.now() - new Date(row.created_at).getTime() < 86400000).length;
+      const [notified, confirmed] = await Promise.all([notifyInquiry(inquiry), today < 3 ? confirmInquiry(inquiry) : false]);
+      // mailer: whether this function sends email itself, so the site's own sender can stand down.
+      return json({ ok: true, notified, confirmed, mailer: Boolean(env('RESEND_API_KEY')) }, 201);
+    }
+
+    /* Intro calls ----------------------------------------------------------- */
+    if (path === '/api/booking/slots' && method === 'GET') {
+      const nowMs = Date.now();
+      const dates = callDates(nowMs);
+      const from = callSlotsFor(dates[0])[0];
+      const taken = new Set(
+        rows(await db.from('call_bookings').select('slot_start,status').gte('slot_start', from).limit(1000))
+          .filter((row) => row.status === 'booked')
+          .map((row) => new Date(row.slot_start).toISOString())
+      );
+      const days = dates.map((date) => ({
+        date,
+        slots: callSlotsFor(date).map((start) => ({
+          start,
+          free: new Date(start).getTime() - nowMs >= CALL_LEAD_MS && !taken.has(start),
+        })),
+      }));
+      return json({ ok: true, timezone: 'Asia/Tashkent', slotMinutes: CALL_SLOT_MIN, days });
+    }
+
+    if (path === '/api/booking' && method === 'POST') {
+      const data = await body(request, 8192);
+      if (typeof data.website === 'string' && data.website.trim()) return json({ ok: true }, 201);
+      const name = text(data.name, 120, { min: 2 });
+      const email = isEmail(data.email) ? data.email.trim().toLowerCase() : null;
+      const topic = text(data.topic, 1000, { required: false });
+      const locale = ['en', 'ru', 'uz'].includes(data.locale) ? data.locale : 'en';
+      const start = typeof data.start === 'string' ? new Date(data.start) : null;
+      const startIso = start && !Number.isNaN(start.getTime()) ? start.toISOString() : '';
+      const valid = new Set(callDates().flatMap(callSlotsFor));
+      if (!name || !email || topic === null || !valid.has(startIso)) {
+        const fields = Object.entries({ name, email, start: valid.has(startIso) }).filter(([, ok]) => !ok).map(([field]) => field);
+        return json({ error: 'invalid_input', fields }, 400);
+      }
+      if (new Date(startIso).getTime() - Date.now() < CALL_LEAD_MS) return json({ error: 'slot_taken' }, 409);
+      const mine = rows(await db.from('call_bookings').select('id,status,slot_start').eq('email', email).gte('slot_start', iso(now())).limit(5))
+        .filter((row) => row.status === 'booked');
+      if (mine.length >= 2) fail('rate_limited', 429);
+      const clash = rows(await db.from('call_bookings').select('id,status').eq('slot_start', startIso).limit(5)).some((row) => row.status === 'booked');
+      if (clash) return json({ error: 'slot_taken' }, 409);
+      const booking = { id: crypto.randomUUID(), name, email, topic, locale, slot_start: startIso, status: 'booked', created_at: iso(now()) };
+      try {
+        rows(await db.from('call_bookings').insert(booking).select('id'));
+      } catch (error) {
+        // The unique index lost a race with another visitor for the same slot.
+        if (error instanceof BackendError) return json({ error: 'slot_taken' }, 409);
+        throw error;
+      }
+      const when = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Tashkent', weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }).format(new Date(startIso));
+      const studio = env('CONTACT_TO_EMAIL');
+      await Promise.all([
+        studio ? sendEmail({ to: [studio], reply_to: email, subject: `Intro call booked — ${when} (Fergana)`, text: [`Name: ${name}`, `Email: ${email}`, `When: ${when} Fergana time (UTC+5), 20 minutes`, `Locale: ${locale}`, '', topic || '—'].join('\n') }, 'booking') : false,
+        sendEmail({ to: [email], ...(studio ? { reply_to: studio } : {}), subject: `Your intro call with Nexora Studio — ${when}`, text: [`Hi ${name},`, '', `Your 20-minute intro call is booked for ${when}, Fergana time (UTC+5).`, 'We will send the call link before the call. To move or cancel it, just reply to this email.', '', 'Nexora Studio'].join('\n') }, 'booking-confirmation'),
+      ]);
+      return json({ ok: true, start: startIso }, 201);
+    }
+
+    if (path === '/api/admin/bookings' && method === 'GET') {
+      await requireAdmin(request);
+      const since = iso(new Date(Date.now() - 86400000));
+      const bookings = rows(
+        await db.from('call_bookings').select('id,name,email,topic,locale,slot_start,status,created_at').gte('slot_start', since).order('slot_start', { ascending: true }).limit(200)
+      );
+      return json({ ok: true, bookings });
+    }
+
+    const bookingRoute = path.match(/^\/api\/admin\/bookings\/([0-9a-f-]{36})\/cancel$/);
+    if (bookingRoute && method === 'POST') {
+      await requireAdmin(request);
+      const updated = rows(await db.from('call_bookings').update({ status: 'cancelled' }).eq('id', bookingRoute[1]).select('id'));
+      if (!updated.length) fail('not_found', 404);
+      return json({ ok: true });
     }
 
     /* Client portal --------------------------------------------------------- */
@@ -404,33 +657,56 @@ export function application({ db, storage, BackendError, env = () => undefined, 
     }
 
     /* Admin ----------------------------------------------------------------- */
-    if (path === '/api/admin/login' && method === 'POST') {
-      const secret = env('PORTAL_ADMIN');
-      if (!secret) fail('service_not_configured', 503);
+    /* Console login ----------------------------------------------------------
+       Usernames and PBKDF2 password hashes live in admin_users. The first
+       login is created on the console page with a one-time setup code
+       (admin_setup_codes), and only while no login exists yet. */
+
+    if (path === '/api/admin/setup' && method === 'GET') {
+      const existing = rows(await db.from('admin_users').select('username').limit(1));
+      return json({ ok: true, needed: existing.length === 0 });
+    }
+
+    if (path === '/api/admin/setup' && method === 'POST') {
+      const ipHash = await guardLogin(request);
+      const existing = rows(await db.from('admin_users').select('username').limit(1));
+      if (existing.length) fail('already_set_up', 409);
       const data = await body(request, 8192);
-      const code = typeof data.code === 'string' ? data.code.trim() : '';
-      const candidate = await digest(`admin:${code}`);
-      const expected = await digest(`admin:${secret}`);
-      let diff = candidate.length ^ expected.length;
-      for (let index = 0; index < expected.length; index += 1) {
-        diff |= candidate.charCodeAt(index) ^ expected.charCodeAt(index);
+      const code = typeof data.code === 'string' ? data.code.replace(/[^a-z0-9]/gi, '').toUpperCase() : '';
+      const username = typeof data.username === 'string' ? data.username.trim().toLowerCase() : '';
+      const password = typeof data.password === 'string' ? data.password : '';
+      const found = code.length >= 8
+        ? rows(await db.from('admin_setup_codes').select('id,expires_at,used_at').eq('code_hash', await digest(`setup:${code}`)).limit(1))[0]
+        : null;
+      if (!found || found.used_at || new Date(found.expires_at).getTime() <= Date.now()) {
+        await noteFailure(ipHash);
+        fail('invalid_code', 401);
       }
-      if (!code || diff !== 0) fail('invalid_credentials', 401);
-      const token = randomToken();
-      rows(
-        await db.from('portal_sessions').insert({
-          token_hash: await digest(token),
-          client_id: null,
-          role: 'admin',
-          expires_at: iso(new Date(Date.now() + ADMIN_SESSION_HOURS * 3600000)),
-          created_at: iso(now()),
-        })
-      );
-      return json(
-        { ok: true },
-        200,
-        { 'set-cookie': setCookie(request, ADMIN_COOKIE, token, ADMIN_SESSION_HOURS * 3600) }
-      );
+      if (!/^[a-z0-9._-]{3,32}$/.test(username)) return json({ error: 'invalid_username' }, 400);
+      const problems = passwordProblems(password, username);
+      if (problems.length) return json({ error: 'weak_password', problems }, 400);
+      const used = rows(await db.from('admin_setup_codes').update({ used_at: iso(now()) }).eq('id', found.id).is('used_at', null).select('id'));
+      if (!used.length) fail('invalid_code', 401);
+      rows(await db.from('admin_users').insert({ username, password_hash: await hashPassword(password), created_at: iso(now()) }).select('username'));
+      return startAdminSession(request);
+    }
+
+    if (path === '/api/admin/login' && method === 'POST') {
+      const ipHash = await guardLogin(request);
+      const data = await body(request, 8192);
+      const username = typeof data.username === 'string' ? data.username.trim().toLowerCase() : '';
+      const password = typeof data.password === 'string' ? data.password : '';
+      const account = username
+        ? rows(await db.from('admin_users').select('username,password_hash').eq('username', username).limit(1))[0]
+        : null;
+      // Check a dummy hash when the user is unknown, so timing does not reveal usernames.
+      const passOk = await verifyPassword(password, account?.password_hash || DUMMY_HASH);
+      if (!account || !password || !passOk) {
+        await noteFailure(ipHash);
+        fail('invalid_credentials', 401);
+      }
+      await db.from('admin_login_failures').delete().eq('ip_hash', ipHash);
+      return startAdminSession(request);
     }
 
     if (path === '/api/admin/logout' && method === 'POST') {
