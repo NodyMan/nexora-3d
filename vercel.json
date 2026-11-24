@@ -56,6 +56,16 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "arise.nexorastudio.world"
+        }
+      ],
+      "destination": "/arise.html"
+    },
+    {
       "source": "/functions/v1/app/api/contact",
       "destination": "/api/contact"
     },

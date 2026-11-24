@@ -195,9 +195,12 @@ def page(key, title, desc, body, forms=False, absolute=False):
 # ---------------------------------------------------------------- Pieces
 
 SHOTS = {
-    'arise-welcome': ('Arise welcome screen with sign-in by Google, Apple or as a guest', 914),
-    'arise-skills': ('Arise skill tree for a future UX designer', 914),
-    'arise-ari': ('Chat with Ari, the AI mentor in Arise', 914),
+    'arise-paths': ('Arise career matches: Software Engineering 92%, Data Science & AI 87%, with the reasons why', 910),
+    'arise-home': ('Arise home screen with a 12-day streak, the Mobile Developer goal and the next step', 910),
+    'arise-universities': ('Arise university list for Uzbekistan and abroad, with match scores and scholarships', 910),
+    'arise-chances': ('Arise chances calculator: 68% readiness and what to improve next', 910),
+    'arise-skills': ('Arise skill tree for a future mobile developer', 910),
+    'arise-ari': ('Chat with Ari, the AI mentor in Arise, about getting into Inha University', 910),
     'idrok-library': ('IDrok library screen with books in progress', 947),
     'idrok-alif': ('Chat with Alif, the AI librarian in IDrok', 947),
     'idrok-reader': ('IDrok reader settings with themes and text-to-speech', 947),
@@ -377,7 +380,7 @@ def work():
     arise_ = case('Arise', ['EdTech', 'AI', 'iOS · Android'],
                   'Finds the right career, university and grant for each student.',
                   'Students tell Arise what they want to become. Ari, the built-in AI mentor, turns that goal into a plan: which skills to learn, which courses to take and what to do this week.',
-                  ARISE_FIGS, ['arise-welcome', 'arise-ari', 'arise-skills'],
+                  ARISE_FIGS, ['arise-home', 'arise-ari', 'arise-skills'],
                   '#3b5bff', a('arise', 'Read the case study →', 'link'))
     idrok_ = case('IDrok', ['Library', 'AI', 'Android · Web'],
                   'A personal digital library that works on any phone.',
@@ -464,9 +467,12 @@ def arise():
         ('Ari, the AI mentor', 'Ari answers questions, explains skills and makes plans, such as a two-week study plan for a future UX designer.'),
         ('Easy start', 'Sign in with Google or Apple, or try the app as a guest. Light and dark themes are built in.'),
     ]) + '\n' + shots([
-        ('arise-welcome', 'Welcome screen', 'Sign in with Google, Apple or as a guest.'),
-        ('arise-skills', 'Skill tree', 'Skills open one by one, with recommended online courses.'),
-        ('arise-ari', 'Ari', "The mentor suggests next steps and replies in the student's language."),
+        ('arise-paths', 'Career paths', 'Ari matches the student\'s interests to real careers and explains why each one fits.'),
+        ('arise-home', 'Today', 'A daily plan, a streak and one clear next step towards the goal.'),
+        ('arise-universities', 'Universities', 'Universities in Uzbekistan and abroad, with match scores and scholarships.'),
+        ('arise-chances', 'Chances', 'How ready the student is for a university, and exactly what to improve next.'),
+        ('arise-skills', 'Skill tree', 'Short steps with XP and badges; the next skills unlock along the way.'),
+        ('arise-ari', 'Ari', 'The AI mentor already knows the plan and answers in the student\'s language.'),
     ]))
     ch += chapter('03', 'How Ari works', 'An AI mentor that does not make things up.', prose(
         'Students ask direct questions: which university, which subject, which deadline. A fluent answer that invents a scholarship is worse than no answer at all. So Ari is built around retrieval first and generation second. University facts, deadlines and requirements come from a verified catalogue; the model composes the route, not the facts.')
@@ -480,7 +486,7 @@ def arise():
                      'A personal guide to career, university and grants for school students in Uzbekistan. We designed it, built it and run it.',
                      [('Product', 'Mobile app'), ('Platforms', 'iOS and Android'), ('Languages', 'Uzbek, Russian, English'),
                       ('Our role', 'Product, design, engineering, AI'), ('Year', '2026'), ('Status', 'Live · coming to the stores')],
-                     ['arise-skills', 'arise-welcome', 'arise-ari'], '#3b5bff', ARISE_FIGS, ch)
+                     ['arise-skills', 'arise-home', 'arise-ari'], '#3b5bff', ARISE_FIGS, ch)
     return page('arise', 'Arise case study — Nexora Studio',
                 'How we designed and built Arise, a mobile guide to career, university and grants with an AI mentor, Ari.', body)
 
