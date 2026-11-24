@@ -43,6 +43,14 @@ No build step is needed: `site/` is served as it is.
 
 Vercel serves `site/` (`outputDirectory` in `vercel.json`). For the contact form, set these environment variables: `RESEND_API_KEY` and `CONTACT_TO_EMAIL`, plus `CONTACT_FROM_EMAIL` if you want a custom sender. The portal backend reads its admin code from the `PORTAL_ADMIN` secret.
 
+## Team
+
+| Member | Role | Focus |
+|---|---|---|
+| **Nody** | Co-founder & Engineer | Full-stack web, mobile apps and applied AI. Builds and runs this site and its client portal. |
+| **Muhammadali Abdurahmanov** | Investor & Developer | Has built and backed several startups, including [Celamur](https://celamur.com), a service for personalised digital gifts shared through a single link. Brings product and business experience to the studio. |
+| **Bahodir Toshtemirov** | AI-Native Developer | Our resident vibe-coder: builds features end to end with AI-assisted development tools. Studied at iTeach. |
+
 ---
 
 Built by [Nody](https://github.com/NodyMan) · [Nexora Studio](https://nexorastudio.world)
