@@ -52,29 +52,129 @@
       "source": "/v11-contact.html",
       "destination": "/contact.html",
       "permanent": true
+    },
+    {
+      "source": "/arise/privacy",
+      "destination": "https://arise.nexorastudio.world/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/privacy/",
+      "destination": "https://arise.nexorastudio.world/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/terms",
+      "destination": "https://arise.nexorastudio.world/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/terms/",
+      "destination": "https://arise.nexorastudio.world/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/delete-account",
+      "destination": "https://arise.nexorastudio.world/delete-account/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/delete-account/",
+      "destination": "https://arise.nexorastudio.world/delete-account/",
+      "permanent": true
+    },
+    {
+      "source": "/arise",
+      "destination": "https://arise.nexorastudio.world/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/",
+      "destination": "https://arise.nexorastudio.world/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/privacy",
+      "destination": "https://arise.nexorastudio.world/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/privacy/",
+      "destination": "https://arise.nexorastudio.world/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/terms",
+      "destination": "https://arise.nexorastudio.world/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/terms/",
+      "destination": "https://arise.nexorastudio.world/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/delete-account",
+      "destination": "https://arise.nexorastudio.world/delete-account/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/delete-account/",
+      "destination": "https://arise.nexorastudio.world/delete-account/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru",
+      "destination": "https://arise.nexorastudio.world/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/ru/",
+      "destination": "https://arise.nexorastudio.world/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/privacy",
+      "destination": "https://arise.nexorastudio.world/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/privacy/",
+      "destination": "https://arise.nexorastudio.world/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/terms",
+      "destination": "https://arise.nexorastudio.world/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/terms/",
+      "destination": "https://arise.nexorastudio.world/terms/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/delete-account",
+      "destination": "https://arise.nexorastudio.world/delete-account/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/delete-account/",
+      "destination": "https://arise.nexorastudio.world/delete-account/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz",
+      "destination": "https://arise.nexorastudio.world/",
+      "permanent": true
+    },
+    {
+      "source": "/arise/uz/",
+      "destination": "https://arise.nexorastudio.world/",
+      "permanent": true
     }
   ],
   "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "arise.nexorastudio.world"
-        }
-      ],
-      "destination": "/arise.html"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "skyblink.nexorastudio.world"
-        }
-      ],
-      "destination": "/skyblink.html"
-    },
     {
       "source": "/functions/v1/app/api/contact",
       "destination": "/api/contact"
