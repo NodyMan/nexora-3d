@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin.html
 Disallow: /portal.html
 
-Sitemap: https://nexorastudio.world/sitemap.xml
+Sitemap: https://www.nexorastudio.world/sitemap.xml

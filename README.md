@@ -26,6 +26,8 @@ site/        the deployed static site (HTML, CSS, JS, assets)
 site/apps/   product sites on their own subdomains: arise.nexorastudio.world, skyblink.nexorastudio.world
 tools/       build_v11.py generates every page in site/; content lives in it and v11_content.py
              build_apps.py generates site/apps/ (legal texts in arise_legal.py)
+             build_seo.py generates the Russian/Uzbek pages (site/ru, site/uz; text in seo_content.py),
+             sitemap.xml, robots.txt and llms.txt. Run it after build_v11.py.
 middleware.js maps each product subdomain to its folder in site/apps/
 api/         Vercel Functions: chat assistant, contact form, confirmation emails
 supabase/    database migrations and the portal's Edge Function

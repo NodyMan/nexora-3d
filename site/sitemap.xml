@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nexorastudio.world/</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/services.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/work.html</loc><lastmod>2026-11-15</lastmod></url>
-  <url><loc>https://nexorastudio.world/team.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/journal.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/contact.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/arise.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/idrok.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/skyblink.html</loc><lastmod>2026-11-15</lastmod></url>
-  <url><loc>https://nexorastudio.world/estimate.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://nexorastudio.world/privacy.html</loc><lastmod>2026-11-06</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://www.nexorastudio.world/</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/services.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/work.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/team.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/journal.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/contact.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/estimate.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/arise.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/idrok.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/skyblink.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/privacy.html</loc><lastmod>2026-11-25</lastmod></url>
+  <url><loc>https://www.nexorastudio.world/ru/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/uz/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/ru/sozdanie-saytov/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/sozdanie-saytov/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/sayt-yaratish/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/services.html"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/uz/sayt-yaratish/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/sozdanie-saytov/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/sayt-yaratish/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/services.html"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/ru/razrabotka-mobilnyh-prilozheniy/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/razrabotka-mobilnyh-prilozheniy/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/mobil-ilova-yaratish/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/services.html"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/uz/mobil-ilova-yaratish/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/razrabotka-mobilnyh-prilozheniy/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/mobil-ilova-yaratish/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/services.html"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/ru/ii-dlya-biznesa/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/ii-dlya-biznesa/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/suniy-intellekt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/services.html"/>
+  </url>
+  <url><loc>https://www.nexorastudio.world/uz/suniy-intellekt/</loc><lastmod>2026-11-25</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.nexorastudio.world/ru/ii-dlya-biznesa/"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://www.nexorastudio.world/uz/suniy-intellekt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.nexorastudio.world/services.html"/>
+  </url>
 </urlset>

@@ -10,6 +10,7 @@ Cookie notice and chat assistant: site/js/v11-widgets.js (+ api/chat.mjs).
 The client portal and admin (portal.html, admin.html) are separate apps.
 """
 
+import json
 import io
 import os
 import sys
@@ -18,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from v11_content import ARTICLES  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'site')
-ORIGIN = 'https://nexorastudio.world'
+ORIGIN = 'https://www.nexorastudio.world'  # the apex redirects here, so canonical URLs use www
 EMAIL = 'support@nexorastudio.world'
 TELEGRAM = 'nexorastudio_admin'
 TG_URL = f'https://t.me/{TELEGRAM}'
@@ -130,11 +131,42 @@ WIDGETS = f'''  <aside class="cookie" data-cookie hidden aria-label="Cookies">
   </div>'''
 
 
+# Russian and Uzbek versions (built by build_seo.py) of the pages that have them.
+LANG_ALTS = {
+    'home': {'ru': '/ru/', 'uz': '/uz/'},
+    'services': {'ru': '/ru/', 'uz': '/uz/'},
+}
+
+
+def seo_head(key, url):
+    """hreflang links and schema.org data for search engines and AI assistants."""
+    out = ''
+    alts = LANG_ALTS.get(key)
+    if alts:
+        out += f'\n  <link rel="alternate" hreflang="en" href="{url}" />'
+        out += ''.join(f'\n  <link rel="alternate" hreflang="{l}" href="{ORIGIN}{p}" />' for l, p in alts.items())
+        out += f'\n  <link rel="alternate" hreflang="x-default" href="{ORIGIN}/" />'
+    if key == 'home':
+        org = {
+            '@context': 'https://schema.org', '@type': 'ProfessionalService', '@id': ORIGIN + '/#org',
+            'name': 'Nexora Studio', 'url': ORIGIN + '/', 'logo': ORIGIN + '/assets/logo-mark.png', 'image': ORIGIN + '/assets/og.png',
+            'description': 'Product studio in Fergana, Uzbekistan: websites, mobile apps for iOS and Android, and AI features for businesses.',
+            'email': EMAIL, 'foundingDate': '2026',
+            'address': {'@type': 'PostalAddress', 'addressLocality': 'Fergana', 'addressRegion': 'Fergana Region', 'addressCountry': 'UZ'},
+            'areaServed': [{'@type': 'Country', 'name': 'Uzbekistan'}, {'@type': 'Place', 'name': 'Worldwide (remote)'}],
+            'knowsLanguage': ['uz', 'ru', 'en'], 'sameAs': [TG_URL],
+            'knowsAbout': ['Website development', 'Mobile app development', 'iOS', 'Android', 'React Native', 'Artificial intelligence', 'Product design'],
+        }
+        out += '\n  <script type="application/ld+json">' + json.dumps(org, ensure_ascii=False, separators=(',', ':')) + '</script>'
+    return out
+
+
 def page(key, title, desc, body, forms=False, absolute=False):
     fname, name = PAGES[key]
     url = ORIGIN + ('/' if fname == 'index.html' else '/' + fname)
     forms_js = '\n  <script type="module" src="./js/v11-forms.js"></script>' if forms else ''
     robots = '\n  <meta name="robots" content="noindex" />' if key == '404' else ''
+    seo = seo_head(key, url)
     html = f'''<!doctype html>
 <html lang="en">
 <head>
@@ -143,7 +175,7 @@ def page(key, title, desc, body, forms=False, absolute=False):
   <title>{title}</title>
   <meta name="description" content="{desc}" />{robots}
   <meta name="theme-color" content="#0c100f" />
-  <link rel="canonical" href="{url}" />
+  <link rel="canonical" href="{url}" />{seo}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Nexora Studio" />
   <meta property="og:title" content="{title}" />
@@ -179,7 +211,7 @@ def page(key, title, desc, body, forms=False, absolute=False):
   <footer class="foot">
     <div class="wrap foot__grid">
       <span>© 2026 Nexora Studio · Fergana, Uzbekistan</span>
-      <nav aria-label="Footer">{a('journal')}{a('estimate', 'Estimate a timeline')}<a href="mailto:{EMAIL}">{EMAIL}</a><a href="{TG_URL}" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a>{a('privacy', 'Privacy & cookies')}</nav>
+      <nav aria-label="Footer"><a href="/ru/" hreflang="ru" lang="ru">Русский</a><a href="/uz/" hreflang="uz" lang="uz">O‘zbekcha</a>{a('journal')}{a('estimate', 'Estimate a timeline')}<a href="mailto:{EMAIL}">{EMAIL}</a><a href="{TG_URL}" target="_blank" rel="noopener">Telegram</a><a href="./portal.html">Client portal</a>{a('privacy', 'Privacy & cookies')}</nav>
     </div>
   </footer>
 {WIDGETS}
@@ -285,8 +317,8 @@ def home():
       </div>
       <div class="track__rail">{panels}</div>
     </section>'''
-    return page('home', 'Nexora Studio — Mobile apps, web platforms and AI products',
-                'Nexora Studio is a product studio in Fergana, Uzbekistan. We design and build mobile apps, web platforms and AI features.', body)
+    return page('home', 'Nexora Studio — Website, Mobile App & AI Development in Uzbekistan',
+                'Nexora Studio is a product studio in Fergana, Uzbekistan. We design and build websites, mobile apps for iOS and Android, and AI features for businesses across Uzbekistan and abroad.', body)
 
 
 # ---------------------------------------------------------------- Services
@@ -339,8 +371,8 @@ def services():
       </div>
       {cards}
     </section>'''
-    return page('services', 'Services — Nexora Studio',
-                'Mobile apps, web platforms, AI features and product design from one team in Fergana.', body)
+    return page('services', 'Web & Mobile App Development Services in Uzbekistan — Nexora Studio',
+                'Mobile apps for iOS and Android, websites and web platforms, AI features and product design from one team in Fergana, Uzbekistan.', body)
 
 
 # ---------------------------------------------------------------- Work
